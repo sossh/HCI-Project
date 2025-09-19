@@ -44,4 +44,8 @@ the responsibilities?
 
 ### What team roles do you think are necessary for success of your project? Who will be assigned which team role? Consider each team member’s strengths and weaknesses, and how team roles can help everyone learn or capitalize on their strengths.
 
-TBD
+Coordinator - Sakeef
+Reviewer & Submitter - Jeff
+Writter - Jerome
+Presenter - Ahir
+Designer - Ben
