@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaflet Example</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha512-o9N1j8Mk0NnZQ8n+vQn7SbZ+OkEy+ylmT1xY2Ej64MiSgYyQswFrn3a4K6ZUpCZV7TwfA1MR+Pke0E1FZkX5xg=="
+    crossorigin=""
+  />
+
+  <style>
+    /* Make the map fill the screen */
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Test</h1>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha512-sA+ePHbDqkA0Cj94i+vGZwtxbQx7aZtKizkgC+GvFrM/LOufFS4gY+ZLLxQF1zL5w6qS6BfLMrhcLef0LzYUMA=="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // Initialize the map and set its view (latitude, longitude, zoom level)
+    const map = L.map('map').setView([49.8951, -97.1384], 13); // Winnipeg
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a marker
+    const marker = L.marker([49.8951, -97.1384]).addTo(map);
+
+    // Add a popup to the marker
+    marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.").openPopup();
+  </script>
+</body>
+</html>
