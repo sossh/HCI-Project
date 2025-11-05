@@ -10,6 +10,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
+  <script src="parking.js"></script>
 
   <!-- Leaflet CSS -->
   <link
@@ -41,17 +42,56 @@
   ></script>
 
   <script>
-    // Initialize the map and set its view (latitude, longitude, zoom level)
-    const map = L.map('map').setView([49.8951, -97.1384], 13); // Winnipeg
+    function buildAreas(map){
+      for(const parkingLot in data){
 
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+        coords = data[parkingLot]["Area"]
+
+        const campusPolygon = L.polygon(coords, {
+          color: 'blue',         // outline color
+          weight: 3,             // outline thickness
+          fillColor: '#3388ff',  // inside color
+          fillOpacity: 0.4       // transparency
+        }).addTo(map);
+
+      }
+    }
+  </script>
+
+  <script>
+
+
+    // Initialize the map and set its view (latitude, longitude, zoom level)
+    const map = L.map('map', {
+      center: [49.809, -97.132],
+      zoom: 15,
+      maxZoom: 18 // ⬅️ increase this value (default is usually 18)
+    }).setView([49.80728419365543, -97.14025071487215]);
+    //const map = L.map('map', {maxZoom: 22}).setView([49.80728419365543, -97.14025071487215], 29); // Winnipeg
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri — Source: Esri, DeLorme, NAVTEQ, USGS, and others'
+}).addTo(map);
+
+
+
+    map.on('click', function(e) {
+      console.log("[" + e.latlng.lat + ", "+ e.latlng.lng +"]");
+    });
+
+
+
+
+  // Define polygon coordinates (example rough rectangle)
+  buildAreas(map)
+
+
+
+
+
 
     // Add a marker
-    const marker = L.marker([49.8951, -97.1384]).addTo(map);
+    const marker = L.marker([49.80728419365543, -97.14025071487215]).addTo(map);
 
     // Add a popup to the marker
     marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.").openPopup();
