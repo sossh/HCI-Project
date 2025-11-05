@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Leaflet Example</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -42,7 +43,7 @@
 
   <script>
     // Initialize the map and set its view (latitude, longitude, zoom level)
-    const map = L.map('map').setView([49.8951, -97.1384], 13); // Winnipeg
+    const map = L.map('map').setView([49.808890627609614, -97.13210208927495], 17); // Winnipeg    //sets the default view point when opening the html
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -51,10 +52,12 @@
     }).addTo(map);
 
     // Add a marker
-    const marker = L.marker([49.8951, -97.1384]).addTo(map);
+    const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
 
     // Add a popup to the marker
     marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.").openPopup();
+
+
   </script>
 </body>
 </html>
