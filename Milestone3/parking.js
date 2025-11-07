@@ -1,6 +1,8 @@
 const data = {
+
     "Q Lot": {
-        "Area": [
+        "map_display_name":"Q",
+        "area": [
             [
                 49.81053658195796,
                 -97.13971235417583
@@ -17,10 +19,43 @@ const data = {
                 49.81040505675611,
                 -97.13962113904404
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable":true,
+                "isFaculty": false,
+                "isStudent": true,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable":true,
+                "isFaculty": false,
+                "isStudent": true,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable":true,
+                "isFaculty": false,
+                "isStudent": true,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": false
+            }
         ]
     },
     "V Lot": {
-        "Area": [
+        "map_display_name":"V",
+        "area": [
             [
                 49.80990292736153,
                 -97.13932111329251
@@ -40,7 +75,8 @@ const data = {
         ]
     },
     "Parcade": {
-        "Area": [
+        "map_display_name":"Parcade",
+        "area": [
             [
                 49.809937344775626,
                 -97.13554956342881
@@ -60,7 +96,8 @@ const data = {
         ]
     },
     "L Lot": {
-        "Area": [
+        "map_display_name":"L",
+        "area": [
             [
                 49.81236108497562,
                 -97.12967009530256
@@ -80,7 +117,8 @@ const data = {
         ]
     },
     "A Lot": {
-        "Area": [
+        "map_display_name":"A",
+        "area": [
             [
                 49.810796218435506,
                 -97.13514277821943
