@@ -1,7 +1,52 @@
+function onLotClick(campusLot) {
+    // Option A: smooth zoom + pan to the polygon's center
+    const center = campusLot.getBounds().getCenter();
+    map.flyTo(center, Math.max(map.getZoom(), 18), { duration: 0.75 });
+}
+
+
+
+
+function renderLeaflet() {
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 30,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
+
+    // Add a popup to the marker
+    marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.");
+}
+
+
+function buildAreas() {
+    for (const parkingLot in data) {
+        coords = data[parkingLot]["area"]
+
+        const campusPolygon = L.polygon(coords, {
+            color: 'blue',         // outline color
+            weight: 3,             // outline thickness
+            fillColor: '#3388ff',  // inside color
+            fillOpacity: 0.4       // transparency
+        }).addTo(map);
+
+        // Add text label (always visible)
+        campusPolygon.bindTooltip(data[parkingLot]["map_display_name"], {
+            permanent: true,
+            direction: "center",
+            className: "polygon-label" // optional custom style
+        });
+
+        // Create a event listener on each campusPolygon, call onLotClick function
+        campusPolygon.on('click', () => onLotClick(campusPolygon));
+    }
+}
 const data = {
 
     "Q Lot": {
-        "map_display_name":"Q",
+        "map_display_name": "Q",
         "area": [
             [
                 49.81053658195796,
@@ -23,7 +68,7 @@ const data = {
         "parking_spots": [
             {
                 "spot_id": 1,
-                "isAvailiable":true,
+                "isAvailiable": true,
                 "isFaculty": false,
                 "isStudent": true,
                 "isVisitor": false,
@@ -33,7 +78,7 @@ const data = {
             },
             {
                 "spot_id": 2,
-                "isAvailiable":true,
+                "isAvailiable": true,
                 "isFaculty": false,
                 "isStudent": true,
                 "isVisitor": false,
@@ -43,7 +88,7 @@ const data = {
             },
             {
                 "spot_id": 3,
-                "isAvailiable":true,
+                "isAvailiable": true,
                 "isFaculty": false,
                 "isStudent": true,
                 "isVisitor": false,
@@ -54,7 +99,7 @@ const data = {
         ]
     },
     "V Lot": {
-        "map_display_name":"V",
+        "map_display_name": "V",
         "area": [
             [
                 49.80990292736153,
@@ -75,7 +120,7 @@ const data = {
         ]
     },
     "Parcade": {
-        "map_display_name":"Parcade",
+        "map_display_name": "Parcade",
         "area": [
             [
                 49.809937344775626,
@@ -96,7 +141,7 @@ const data = {
         ]
     },
     "L Lot": {
-        "map_display_name":"L",
+        "map_display_name": "L",
         "area": [
             [
                 49.81236108497562,
@@ -117,10 +162,10 @@ const data = {
         ]
     },
     "A Lot": {
-        "map_display_name":"A",
+        "map_display_name": "A",
         "area": [
             [
-                49.810796218435506,
+                49.810806218035400,
                 -97.13514277821943
             ],
             [

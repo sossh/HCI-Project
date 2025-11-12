@@ -153,3 +153,22 @@ h2 {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
+.polygon-label {
+      background: none !important;
+      /* remove the white box */
+      border: none !important;
+      /* remove the border */
+      box-shadow: none !important;
+      /* remove subtle shadow */
+      padding: 0 !important;
+      /* remove inner padding */
+      margin: 0 !important;
+      /* remove outer margin */
+      color: black;
+      /* text color */
+      font-weight: bold;
+      font-size: 21px;
+      text-shadow: 1px 1px 2px white;
+      /* improves visibility */
+    }
