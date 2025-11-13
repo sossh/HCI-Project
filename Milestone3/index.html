@@ -15,9 +15,27 @@
 </head>
 
 <body>
-    <header>
-        <h1>Parking Finder</h1>
-    </header>
+    <div class="top-row">
+        <header>
+            <h1>UM Park</h1>
+        </header>
+
+        <div class="lot-bar">
+            <button class="lot-btn" id="prev-lot">⟨ Prev</button>
+            <div class="lot-dropdown-container">
+                <select id="lot-selector" class="lot-dropdown">
+                    <option>Lot A - Engineering</option>
+                    <option>Lot B - Agriculture</option>
+                    <option>Lot C - Science</option>
+                    <option>Lot D - Admin</option>
+                    <option>Lot E - Stadium</option>
+                </select>
+
+                <img src="images/arrowDropdown.png" class="lot-arrow" alt="Dropdown Arrow">
+            </div>
+            <button class="lot-btn" id="next-lot">Next ⟩</button>
+        </div>
+    </div>
 
     <!-- Left Filter Sidebar -->
     <div class="container">
@@ -45,60 +63,74 @@
 
             <!-- Filters Card -->
             <aside class="filters">
-                <h2>Filters</h2>
+            <h2>Filters</h2>
 
+            <div class="scrollable">
                 <h3>Permit Type</h3>
+
                 <label>
+                <span class="label-left">
                     <input type="checkbox" id="faculty" />
                     Faculty
-                    <img src="images/faculty.png" alt="Faculty Icon" class="icon" />
+                </span>
+                <img src="images/faculty.png" alt="Faculty Icon" class="icon" />
                 </label>
 
                 <label>
+                <span class="label-left">
                     <input type="checkbox" id="student" />
                     Student
-                    <img src="images/student.png" alt="Student Icon" class="icon" />
+                </span>
+                <img src="images/student.png" alt="Student Icon" class="icon" />
                 </label>
 
                 <label>
+                <span class="label-left">
                     <input type="checkbox" id="visitor" />
                     Visitor
-                    <img src="images/visitor.png" alt="Visitor Icon" class="icon" />
+                </span>
+                <img src="images/visitor.png" alt="Visitor Icon" class="icon" />
                 </label>
 
                 <hr>
 
                 <h3>Spot Features</h3>
                 <label>
-                    <input type="checkbox" id="covered" />
-                    Covered Spots
-                    <img src="images/covered.png" alt="Covered Icon" class="icon" />
+                <span class="label-left">
+                    <input type="checkbox" id="bike" />
+                    Bike
+                </span>
+                <img src="images/covered.png" alt="Bike Icon" class="icon" />
                 </label>
+
                 <label>
+                <span class="label-left">
                     <input type="checkbox" id="electric" />
-                    Electric Charging
-                    <img src="images/electric.png" alt="Electric Icon" class="icon" />
+                    Electric
+                </span>
+                <img src="images/electric.png" alt="Electric Icon" class="icon" />
                 </label>
+
                 <label>
+                <span class="label-left">
                     <input type="checkbox" id="accessible" />
-                    Accessible Spots
-                    <img src="images/accessible.png" alt="Accessible Icon" class="icon" />
+                    Accessible
+                </span>
+                <img src="images/accessible.png" alt="Accessible Icon" class="icon" />
                 </label>
-                <hr>
-                <h3 for="traffic-range">Traffic:</h3>
-                <input type="range" id="traffic-range" min="0" max="100" value="25">
-                <br>
-                <span id="traffic-value">25</span>
+            </div>
+
+            <hr>
+
+            <h3>Traffic:</h3>
+            <input type="range" id="traffic-range" min="0" max="100" value="25" />
+            <br />
+            <span id="traffic-value">25</span>
             </aside>
         </div>
 
         <!-- Right side: lot bar above map -->
         <div class="right-panel">
-            <div class="lot-bar">
-                <button class="lot-btn" id="prev-lot">⟨ Prev</button>
-                <span class="lot-name">Lot A: Engineering</span>
-                <button class="lot-btn" id="next-lot">Next ⟩</button>
-            </div>
 
             <main class="map-area">
                 <div id="map-frame">
