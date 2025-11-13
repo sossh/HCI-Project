@@ -1,4 +1,4 @@
-// --- UI Elements ---
+// ******** UI Elements ********
 const distanceValue = document.getElementById("distance-value");
 const trafficValue = document.getElementById("traffic-value");
 
@@ -8,6 +8,7 @@ const lotDropdown = document.getElementById("lot-selector");
 const prevLotBtn = document.getElementById("prev-lot");
 const nextLotBtn = document.getElementById("next-lot");
 
+const activeFiltersContainer = document.getElementById("active-filters");
 
 // ******** LOT SELECTOR SETUP ********
 const lots = Array.from(lotDropdown.options).map(opt => opt.text);
@@ -89,3 +90,46 @@ buildingDropdown.addEventListener("change", (e) => {
 function onBuildingSelected(buildingName) {
     console.log("onBuildingSelected() placeholder:", buildingName);
 }
+
+// ******** Overlay Icons ********
+// Map filter IDs → icon paths
+const filterIcons = {
+    faculty: "images/faculty.png",
+    student: "images/student.png",
+    visitor: "images/visitor.png",
+    bike: "images/covered.png",
+    electric: "images/electric.png",
+    accessible: "images/accessible.png"
+};
+
+function updateActiveFiltersVisibility() {
+    if (activeFiltersContainer.children.length === 0) {
+        activeFiltersContainer.classList.add("hidden");
+    } else {
+        activeFiltersContainer.classList.remove("hidden");
+    }
+}
+
+// Update overlay when checkbox changes
+document.querySelectorAll(".filters input[type='checkbox']").forEach(cb => {
+    cb.addEventListener("change", () => {
+        console.log(`Filter '${cb.id}' is now: ${cb.checked}`);
+
+        if (cb.checked) {
+            // Add icon
+            const img = document.createElement("img");
+            img.src = filterIcons[cb.id];
+            img.id = "icon-" + cb.id;
+            activeFiltersContainer.appendChild(img);
+        } else {
+            // Remove icon
+            const icon = document.getElementById("icon-" + cb.id);
+            if (icon) icon.remove();
+        }
+
+        updateActiveFiltersVisibility();
+    });
+});
+
+// Hide on page load
+updateActiveFiltersVisibility();
