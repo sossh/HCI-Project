@@ -1,33 +1,50 @@
+/* ========================================= */
+/*               COLOR CONSTANTS             */
+/* ========================================= */
+:root {
+  --primary: #341a04;
+  --secondary: #dc9a27;
+  --important: #4562a6;
+  --card-bg: #ffffff;
+  --shadow-heavy: rgba(0, 0, 0, 1);
+  --shadow-medium: rgba(0, 0, 0, 0.25);
+  --shadow-light: rgba(0, 0, 0, 0.15);
+  --map-bg: rgb(128, 152, 156);
+}
+
+/* ========================================= */
+/*                 HEADER                    */
+/* ========================================= */
 header {
-  background-color: #a00034;
+  background-color: var(--primary);
   color: white;
   padding: 8px 12px;
   border-radius: 10px;
   font-size: 0.5em;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  /* remove full-width behavior */
+  box-shadow: 0 2px 5px var(--shadow-light);
   width: auto;
   display: inline-block;
   text-align: left;
-  margin: 5px;  /* push slightly away from edges */
+  margin: 5px;
 }
 
 .top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;  /* put header on left, lot bar on right */
-  padding: 10px 40px;              /* match your sidebar padding */
-  gap: 130px;                       
+  justify-content: space-between;
+  padding: 10px 40px;
+  gap: 130px;
 }
 
-/* Lot bar styling */
+/* ========================================= */
+/*                 LOT BAR                   */
+/* ========================================= */
 .lot-bar {
   flex: 1;
-  min-width: 300px; 
-  background-color: #ffffff;
+  min-width: 300px;
+  background-color: var(--card-bg);
   border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 12px var(--shadow-light);
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -43,15 +60,14 @@ header {
 .lot-dropdown {
   font-size: 1.4em;
   font-weight: bold;
-  color: #a00034;
+  color: var(--primary);
   border: none;
   background: transparent;
   outline: none;
-  padding: 4px 32px 4px 10px; /* space for arrow */
+  padding: 4px 32px 4px 10px;
   border-radius: 8px;
   cursor: pointer;
-
-  appearance: none;           /* hide native arrow */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -59,13 +75,13 @@ header {
 .lot-arrow {
   width: 20px;
   height: 20px;
-  pointer-events: none;       /* clicking still opens the dropdown */
+  pointer-events: none;
   position: absolute;
   right: 1px;
 }
 
 .lot-btn {
-  background-color: #a00034;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -75,73 +91,98 @@ header {
   transition: background-color 0.2s ease;
 }
 
+/* ========================================= */
+/*                   BODY                    */
+/* ========================================= */
 body {
+  position: relative;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #dff0f3;
+  background: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url("../images/background2.png"); /* your file path */
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  filter: brightness(1.2) blur(2px); /* dim + soften */
+  z-index: -1; /* behind everything */
 }
 
 h2 {
   margin-top: 0;
-  color: #a00034;
+  color: var(--primary);
 }
 
+/* ========================================= */
+/*                 LAYOUT                    */
+/* ========================================= */
 .container {
   display: flex;
   gap: 30px;
   height: fit-content;
   box-sizing: border-box;
-  
 }
 
 .sidebar {
   display: flex;
-  flex-direction: column;  /* stack vertically */
+  flex-direction: column;
   gap: 1px;
 }
 
-.building-selector, .filters {
+/* ========================================= */
+/*            SIDEBAR CARDS                  */
+/* ========================================= */
+.building-selector,
+.filters {
   width: 250px;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border: 1px solid #ddd;
   padding: 15px;
   box-sizing: border-box;
   border-radius: 20px;
   margin: 14px 0 0px 40px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 15px var(--shadow-light);
   height: fit-content;
 }
 
+/* Scrollable inside Filters */
 .scrollable {
-  max-height: 300px;        /* limit height inside card */
-  overflow-y: auto;         /* enable vertical scroll */
+  max-height: 300px;
+  overflow-y: auto;
   padding-left: 15px;
-  padding-right: 25px;       /* avoid scrollbar overlap */
-  margin-bottom: 15px;      /* space below scrolling area */
-
-  /* Optional smooth scrollbar */
+  padding-right: 25px;
+  margin-bottom: 15px;
   scrollbar-width: thin;
-  scrollbar-color: #a00034 #f2f2f2;
+  scrollbar-color: var(--primary) #f2f2f2;
 }
 
+/* ========================================= */
+/*               FILTERS                     */
+/* ========================================= */
 .filters label {
   display: flex;
   align-items: center;
-  /* space between checkbox, icon, and text */
   justify-content: space-between;
   margin: 5px 0;
-  font-size: 1.0em;
+  font-size: 1em;
   font-weight: 500;
   cursor: pointer;
 }
 
-/* Subtle hover pop */
 .filters label:hover .icon {
   transform: scale(1.2);
   opacity: 1;
 }
 
-/* Small icons beside filters */
 .filters .icon {
   width: 40px;
   height: 40px;
@@ -151,33 +192,33 @@ h2 {
 }
 
 .filters input[type="checkbox"] {
-  transform: scale(1.9);   /* akes it 1.9× bigger */
-  margin-right: 8px;       /* space between box and text */
-  accent-color: #a00034;
+  transform: scale(1.9);
+  margin-right: 8px;
+  accent-color: var(--primary);
   cursor: pointer;
 }
 
-/* Range styling */
-#price-range {
-  width: 100%;
-}
-
+/* ========================================= */
+/*              RIGHT PANEL                  */
+/* ========================================= */
 .right-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
   margin: 15px 40px 5px 0;
-  gap: 25px; /* vertical spacing between bar and map */
+  gap: 25px;
 }
 
-/* Main Map Area */
+/* ========================================= */
+/*                 MAP AREA                  */
+/* ========================================= */
 .map-area {
   flex: 1;
   position: relative;
-  background-color: #ffffff;
-  margin: 1px 20px 1px 20px;
+  background-color: var(--card-bg);
+  margin: 1px 20px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  box-shadow: 0 0 10px var(--shadow-medium);
 }
 
 #map-frame {
@@ -188,47 +229,46 @@ h2 {
   left: 15px;
   border-radius: 20px;
   overflow: hidden;
-  background-color: rgb(128, 152, 156);
+  background-color: var(--map-bg);
 }
 
-/* Make sure the iframe itself fills the container */
 #map-frame iframe {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 0; /* keep flat so container controls the rounding */
 }
 
+/* ========================================= */
+/*            ACTIVE FILTERS BAR             */
+/* ========================================= */
 .active-filters {
   position: absolute;
   top: 25px;
   left: 100px;
-  
   display: flex;
   gap: 10px;
-
   background: rgba(255, 255, 255, 0.85);
   padding: 8px 12px;
   border-radius: 40px;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,0.50);
-
+  box-shadow: 0 2px 8px var(--shadow-heavy);
   backdrop-filter: blur(3px);
-
-  z-index: 999; /* ensures it's above the map */
+  z-index: 999;
 }
 
 .active-filters img {
   width: 40px;
   height: 40px;
   object-fit: contain;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .active-filters.hidden {
   display: none;
 }
 
+/* ========================================= */
+/*               NAV BAR (unused?)           */
+/* ========================================= */
 .nav-bar {
   border-radius: 15px;
   display: flex;
@@ -237,7 +277,7 @@ h2 {
 }
 
 .nav-btn {
-  background-color: #2aa156;
+  background-color: var(--primary);
   color: white;
   border: none;
   padding: 8px 16px;
