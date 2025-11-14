@@ -36,7 +36,16 @@ function renderLeaflet() {
 
 
 function buildAreas() {
-    for (const parkingLot in data) {
+
+    // Uncomment when all implemented
+    // const filters = getFilters(); // Get all applied filters set on the ui
+    // const filteredLots = getFilteredParkingLots(filters)
+
+    filters = []
+    const filteredLots = getFilteredParkingLots(filters)
+
+
+    for(const parkingLot of filteredLots) {
         coords = data[parkingLot]["area"]
 
         const campusPolygon = L.polygon(coords, {
@@ -58,6 +67,56 @@ function buildAreas() {
         campusPolygon.on('mouseover', () => onHover(campusPolygon));
         campusPolygon.on('mouseout', () => onOut(campusPolygon));
     }
+}
+
+// Return all parking lots that have at least one spot where the given filters are true
+// Filters are just the tags given to each parking spot, example: "isAccessible"
+// If no filters are given returns all parking lots
+function getFilteredParkingLots(filters){
+
+    let filteredLots = []
+
+    // Itterate over all parking lots
+    for(const parkingLot of Object.keys(data)){
+
+        let parkingSpots = [];
+        if("parking_spots" in data[parkingLot]){
+            parkingSpots = data[parkingLot]["parking_spots"];
+        }
+        
+        let hasAllFilters = true;
+        
+
+        // Make sure all filters appear at least once
+        for(const filter of filters){
+
+            let hasFilter = false;
+                
+            // Check if the filter exists in at least one 
+            for(const parkingSpot of parkingSpots){
+                if(filter in parkingSpot && parkingSpot[filter] == true){
+                    hasFilter = true;
+                    break;
+                }
+
+            }
+
+            // Stop looping for this lot if it doesnt have this filter
+            hasAllFilters = hasAllFilters && hasFilter;
+            if(hasAllFilters == false){
+                break;
+            }
+        }
+
+        // If this lot has all filters add it to the good list
+        if(hasAllFilters){
+            filteredLots.push(parkingLot)
+        }
+
+    }
+
+    return filteredLots
+    
 }
 const data = {
 

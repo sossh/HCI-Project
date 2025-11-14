@@ -55,30 +55,6 @@
     integrity="sha512-sA+ePHbDqkA0Cj94i+vGZwtxbQx7aZtKizkgC+GvFrM/LOufFS4gY+ZLLxQF1zL5w6qS6BfLMrhcLef0LzYUMA=="
     crossorigin=""></script>
 
-  <script>
-    function buildAreas(map) {
-      for (const parkingLot in data) {
-
-        coords = data[parkingLot]["area"]
-
-        const campusPolygon = L.polygon(coords, {
-          color: 'blue',         // outline color
-          weight: 3,             // outline thickness
-          fillColor: '#3388ff',  // inside color
-          fillOpacity: 0.4       // transparency
-        }).addTo(map);
-
-        // Add text label (always visible)
-        campusPolygon.bindTooltip(data[parkingLot]["map_display_name"], {
-          permanent: true,
-          direction: "center",
-          className: "polygon-label" // optional custom style
-        });
-
-      }
-
-    }
-  </script>
 
   <script>
 
