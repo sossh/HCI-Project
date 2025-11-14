@@ -150,24 +150,22 @@
         </div>
     </div>
 
+    <script src="parking.js"></script>
     <script src="js/script.js"></script>
+    <script src="leafLet.js"></script>
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+
     <script>
-        var map = L.map('map-frame').setView([49.808890627609614, -97.13210208927495], 17);
+        var map = L.map('map-frame').setView([49.808890627609614, -97.13210208927495], 16);
+        
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 30,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
 
-        const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
-
-        // Add a popup to the marker
-        marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.").openPopup();
+        renderLeaflet()
+        buildAreas()
     </script>
 
 
