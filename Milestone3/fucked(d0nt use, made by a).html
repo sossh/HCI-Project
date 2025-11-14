@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Leaflet Example</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="parking.js"></script>
 
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha512-o9N1j8Mk0NnZQ8n+vQn7SbZ+OkEy+ylmT1xY2Ej64MiSgYyQswFrn3a4K6ZUpCZV7TwfA1MR+Pke0E1FZkX5xg=="
-    crossorigin=""
-  />
+    crossorigin="" />
 
   <style>
     /* Make the map fill the screen */
@@ -26,8 +23,28 @@
       height: 100vh;
       width: 100%;
     }
+
+    .polygon-label {
+      background: none !important;
+      /* remove the white box */
+      border: none !important;
+      /* remove the border */
+      box-shadow: none !important;
+      /* remove subtle shadow */
+      padding: 0 !important;
+      /* remove inner padding */
+      margin: 0 !important;
+      /* remove outer margin */
+      color: black;
+      /* text color */
+      font-weight: bold;
+      font-size: 21px;
+      text-shadow: 1px 1px 2px white;
+      /* improves visibility */
+    }
   </style>
 </head>
+
 <body>
 
   <h1>Test</h1>
@@ -35,24 +52,45 @@
   <div id="map"></div>
 
   <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha512-sA+ePHbDqkA0Cj94i+vGZwtxbQx7aZtKizkgC+GvFrM/LOufFS4gY+ZLLxQF1zL5w6qS6BfLMrhcLef0LzYUMA=="
-    crossorigin=""
-  ></script>
+    crossorigin=""></script>
+
 
   <script>
-    // Initialize the map and set its view (latitude, longitude, zoom level)
-    const map = L.map('map').setView([49.808890627609614, -97.13210208927495], 17); // Winnipeg    //sets the default view point when opening the html
 
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap contributors'
+
+    // Initialize the map and set its view (latitude, longitude, zoom level)
+    const map = L.map('map', {
+      center: [49.809, -97.132],
+      zoom: 16,
+      maxZoom: 18 // ⬅️ increase this value (default is usually 18)
+    }).setView([49.80728419365543, -97.14025071487215]);
+    //const map = L.map('map', {maxZoom: 22}).setView([49.80728419365543, -97.14025071487215], 29); // Winnipeg
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri — Source: Esri, DeLorme, NAVTEQ, USGS, and others'
     }).addTo(map);
 
+
+
+    map.on('click', function (e) {
+      console.log("[" + e.latlng.lat + ", " + e.latlng.lng + "]");
+    });
+
+
+
+
+    // Define polygon coordinates (example rough rectangle)
+    buildAreas(map)
+
+
+
+
+
+
     // Add a marker
-    const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
+    const marker = L.marker([49.80728419365543, -97.14025071487215]).addTo(map);
 
     // Add a popup to the marker
     marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.").openPopup();
@@ -60,4 +98,5 @@
 
   </script>
 </body>
+
 </html>
