@@ -70,7 +70,7 @@ function buildAreas() {
 }
 
 // Return all parking lots that have at least one spot where the given filters are true
-// Filters are just the tags given to each parking spot, example: "isAccessible"
+// Filters are just the tags given to each parking spot, example: ["isAccessible", "isAvailiable"]
 // If no filters are given returns all parking lots
 function getFilteredParkingLots(filters){
 
