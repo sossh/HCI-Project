@@ -1,32 +1,33 @@
-      
-function onLotClick(campusLot) {
-    const center = campusLot.getBounds().getCenter();
-    map.flyTo(center, 18, {duration: 0.75 });
+function onLotClick(campusLot, lotName) {
+  map.once('moveend', function() {
+    displayLotByName(lotName);
+  });
+  const center = campusLot.getBounds().getCenter();
+  map.flyTo(center, 18, { duration: 0.75 });
 }
 
-function onHover(campusLot){
-    campusLot.setStyle({weight: 4, fillOpacity: 1});
+function onHover(campusLot) {
+  campusLot.setStyle({ weight: 4, fillOpacity: 1 });
 }
 
-function onOut(campusLot){
-    campusLot.setStyle({weight: 3, fillOpacity: 0.4});
+function onOut(campusLot) {
+  campusLot.setStyle({ weight: 3, fillOpacity: 0.4 });
 }
-
 
 function renderLeaflet() {
+  // Commented this out, but this is the original map layout. I just found it to be too much info
+  // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     maxZoom: 19,
+  //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
-    // Commented this out, but this is the original map layout. I just found it to be too much info
-    // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     maxZoom: 19,
-    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        
-    // }).addTo(map);
+  // }).addTo(map);
 
-    // Cleaner map design, imo.
-    L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+  // Cleaner map design, imo.
+  L.tileLayer("https://tile.openstreetmap.de/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
     // const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
 
@@ -34,89 +35,81 @@ function renderLeaflet() {
     // marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.");
 }
 
-
 function buildAreas() {
+  // Uncomment when all implemented
+  // const filters = getFilters(); // Get all applied filters set on the ui
+  // const filteredLots = getFilteredParkingLots(filters)
 
-    // Uncomment when all implemented
-    // const filters = getFilters(); // Get all applied filters set on the ui
-    // const filteredLots = getFilteredParkingLots(filters)
+  filters = [];
+  const filteredLots = getFilteredParkingLots(filters);
 
-    filters = []
-    const filteredLots = getFilteredParkingLots(filters)
+  for (const parkingLot of filteredLots) {
+    coords = data[parkingLot]["area"];
 
+    const campusPolygon = L.polygon(coords, {
+      color: "blue", // outline color
+      weight: 3, // outline thickness
+      fillColor: "#3388ff", // inside color
+      fillOpacity: 0.4, // transparency
+    }).addTo(map);
 
-    for(const parkingLot of filteredLots) {
-        coords = data[parkingLot]["area"]
+    // Add text label (always visible)
+    campusPolygon.bindTooltip(data[parkingLot]["map_display_name"], {
+      permanent: true,
+      direction: "center",
+      className: "polygon-label", // optional custom style
+    });
 
-        const campusPolygon = L.polygon(coords, {
-            color: 'blue',         // outline color
-            weight: 3,             // outline thickness
-            fillColor: '#3388ff',  // inside color
-            fillOpacity: 0.4       // transparency
-        }).addTo(map);
-
-        // Add text label (always visible)
-        campusPolygon.bindTooltip(data[parkingLot]["map_display_name"], {
-            permanent: true,
-            direction: "center",
-            className: "polygon-label" // optional custom style
-        });
-
-        // Create a event listener on each campusPolygon, call onLotClick function
-        campusPolygon.on('click', () => onLotClick(campusPolygon));
-        campusPolygon.on('mouseover', () => onHover(campusPolygon));
-        campusPolygon.on('mouseout', () => onOut(campusPolygon));
-    }
+    // Create a event listener on each campusPolygon, call onLotClick function
+    campusPolygon.on("click", () => {
+      onLotClick(campusPolygon, parkingLot);
+    });
+    campusPolygon.on("mouseover", () => onHover(campusPolygon));
+    campusPolygon.on("mouseout", () => onOut(campusPolygon));
+  }
 }
 
 // Return all parking lots that have at least one spot where the given filters are true
 // Filters are just the tags given to each parking spot, example: ["isAccessible", "isAvailiable"]
 // If no filters are given returns all parking lots
-function getFilteredParkingLots(filters){
+function getFilteredParkingLots(filters) {
+  let filteredLots = [];
 
-    let filteredLots = []
-
-    // Itterate over all parking lots
-    for(const parkingLot of Object.keys(data)){
-
-        let parkingSpots = [];
-        if("parking_spots" in data[parkingLot]){
-            parkingSpots = data[parkingLot]["parking_spots"];
-        }
-        
-        let hasAllFilters = true;
-        
-
-        // Make sure all filters appear at least once
-        for(const filter of filters){
-
-            let hasFilter = false;
-                
-            // Check if the filter exists in at least one 
-            for(const parkingSpot of parkingSpots){
-                if(filter in parkingSpot && parkingSpot[filter] == true){
-                    hasFilter = true;
-                    break;
-                }
-
-            }
-
-            // Stop looping for this lot if it doesnt have this filter
-            hasAllFilters = hasAllFilters && hasFilter;
-            if(hasAllFilters == false){
-                break;
-            }
-        }
-
-        // If this lot has all filters add it to the good list
-        if(hasAllFilters){
-            filteredLots.push(parkingLot)
-        }
-
+  // Itterate over all parking lots
+  for (const parkingLot of Object.keys(data)) {
+    let parkingSpots = [];
+    if ("parking_spots" in data[parkingLot]) {
+      parkingSpots = data[parkingLot]["parking_spots"];
     }
 
-    return filteredLots
-    
+    let hasAllFilters = true;
+
+    // Make sure all filters appear at least once
+    for (const filter of filters) {
+      let hasFilter = false;
+
+      // Check if the filter exists in at least one
+      for (const parkingSpot of parkingSpots) {
+        if (filter in parkingSpot && parkingSpot[filter] == true) {
+          hasFilter = true;
+          break;
+        }
+      }
+
+      // Stop looping for this lot if it doesnt have this filter
+      hasAllFilters = hasAllFilters && hasFilter;
+      if (hasAllFilters == false) {
+        break;
+      }
+    }
+
+    // If this lot has all filters add it to the good list
+    if (hasAllFilters) {
+      filteredLots.push(parkingLot);
+    }
+  }
+
+  return filteredLots;
 }
 
 

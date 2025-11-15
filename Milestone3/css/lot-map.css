@@ -1,0 +1,179 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+}
+
+
+#parking-overlay-container {
+
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  flex-direction: column;
+ 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000; 
+  display: none;
+}
+
+#top-bar {
+  padding: 10px 20px;
+  background-color: #1b4571;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#top-bar h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#close-button {
+  background-color: #1b4571;
+  color: white;
+  border: solid #dddddd 1px;
+  padding: 7px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+#close-button:hover {
+  background-color: #2460a0;
+}
+
+
+
+#lot-view {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#parking-lot {
+    background-color: #dddddd;
+    border-radius: 10px;
+  width: min-content;
+  height: min-content;
+  display: grid;
+  grid-gap: 5px;
+  padding: 20px;
+}
+
+/* 4. A single parking spot */
+.spot {
+  background-color: #ffffff;
+  border: 1px solid #696969;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.spot.empty {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  cursor: default;
+  pointer-events: none;
+}
+
+.spot span {
+  font-size: 7px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.spot:hover {
+  background-color: #dddddd;
+}
+
+.spot.occupied {
+  background-color: #fdbdc3;
+  border-color: #e93431;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.spot.occupied:hover {
+  background-color: #fdbdc3;
+}
+
+.spot.accessible {
+  background-color: #95cfff;
+  border-color: #47a9ff;
+}
+
+.spot.accessible:hover {
+  background-color: #72b3e8;
+}
+
+.spot.ev {
+  border-color: #c636ff;
+}
+
+.spot.selected {
+  background-color: #92e195;
+  border-color: #329137;
+}
+
+.spot.selected:hover {
+  background-color: #7fc881;
+}
+
+.instructions {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#bottom-bar {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #b6b6b6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#bottom-information {
+  font-size: 15px;
+  color: #2f2f2f;
+  display: flex;
+  gap: 15px;
+}
+
+#buy-button {
+  background-color: #239129;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+#buy-button:hover {
+  background-color: #1d7820;
+}
