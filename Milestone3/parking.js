@@ -28,10 +28,10 @@ function renderLeaflet() {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
+    // const marker = L.marker([49.808890627609614, -97.13210208927495]).addTo(map);
 
     // Add a popup to the marker
-    marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.");
+    // marker.bindPopup("<b>Hello!</b><br>This is Winnipeg, Canada.");
 }
 
 
@@ -118,145 +118,13 @@ function getFilteredParkingLots(filters){
     return filteredLots
     
 }
+
+
+
+
 const data = {
 
-    "Q Lot": {
-        "map_display_name": "Q",
-        "area": [
-            [
-                49.81053658195796,
-                -97.13971235417583
-            ],
-            [
-                49.81120112488122,
-                -97.13780756760048
-            ],
-            [
-                49.811073062631785,
-                -97.13770025568071
-            ],
-            [
-                49.81040505675611,
-                -97.13962113904404
-            ]
-        ],
-        "parking_spots": [
-            {
-                "spot_id": 1,
-                "isAvailiable": true,
-                "isFaculty": false,
-                "isStudent": true,
-                "isVisitor": false,
-                "isCovered": false,
-                "isElectric": false,
-                "isAccessible": true
-            },
-            {
-                "spot_id": 2,
-                "isAvailiable": true,
-                "isFaculty": false,
-                "isStudent": true,
-                "isVisitor": false,
-                "isCovered": false,
-                "isElectric": false,
-                "isAccessible": true
-            },
-            {
-                "spot_id": 3,
-                "isAvailiable": true,
-                "isFaculty": false,
-                "isStudent": true,
-                "isVisitor": false,
-                "isCovered": false,
-                "isElectric": false,
-                "isAccessible": false
-            }
-        ]
-    },
-    "V Lot": {
-        "map_display_name": "V",
-        "area": [
-            [
-                49.80990292736153,
-                -97.13932111329251
-            ],
-            [
-                49.809677946880036,
-                -97.13910648945301
-            ],
-            [
-                49.809515316186875,
-                -97.1395838755394
-            ],
-            [
-                49.80973332678789,
-                -97.13979328573936
-            ]
-        ]
-    },
-    "Parkade": {
-        "map_display_name": "Parkade",
-        "area": [
-            [
-                49.809937344775626,
-                -97.13554956342881
-            ],
-            [
-                49.809414696575395,
-                -97.1350988533659
-            ],
-            [
-                49.80911356557963,
-                -97.13598417670377
-            ],
-            [
-                49.80964313952938,
-                -97.13644025236265
-            ]
-        ]
-    },
-    "L Lot": {
-        "map_display_name": "L",
-        "area": [
-            [
-                49.81236108497562,
-                -97.12967009530256
-            ],
-            [
-                49.81135044655476,
-                -97.1288813526925
-            ],
-            [
-                49.81157888037254,
-                -97.1281355348503
-            ],
-            [
-                49.812485682771694,
-                -97.12888671828847
-            ]
-        ]
-    },
-    "A Lot": {
-        "map_display_name": "A",
-        "area": [
-            [
-                49.810806218035400,
-                -97.13514277821943
-            ],
-            [
-                49.810744300913875,
-                -97.13535203646293
-            ],
-            [
-                49.811218478876384,
-                -97.135738359374
-            ],
-            [
-                49.811284240416775,
-                -97.13554519791845
-            ]
-        ]
-    },
+    //From this comment to the next comment, contain all public parking lots that are pay per use, no permits needed.
     "ACW Lot": {
         "map_display_name": "ACW",
         "area": [
@@ -280,6 +148,38 @@ const data = {
                 49.809218,
                 -97.1298677
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "AC Lot": {
@@ -305,31 +205,38 @@ const data = {
                 49.8094026,
                 -97.1286105
             ]
-        ]
-    },
-    "B Lot": {
-        "map_display_name": "B",
-        "area": [
-            [
-                49.8109535,
-                -97.1299023
-            ],
-            [
-                49.8103546,
-                -97.129441
-            ],
-            [
-                49.8105589,
-                -97.1288348
-            ],
-            [
-                49.8111508,
-                -97.1293122
-            ],
-            [
-                49.8109535,
-                -97.1299023
-            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "D Lot": {
@@ -355,6 +262,38 @@ const data = {
                 49.8065038,
                 -97.1322574
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "M Lot": {
@@ -380,6 +319,38 @@ const data = {
                 49.8049848,
                 -97.134439
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "G Lot": {
@@ -405,6 +376,38 @@ const data = {
                 49.8057984,
                 -97.1366296
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "ALC Lot": {
@@ -430,6 +433,38 @@ const data = {
                 49.8068748,
                 -97.1377857
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "H Lot": {
@@ -455,6 +490,38 @@ const data = {
                 49.8079438,
                 -97.1337269
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "U Lot": {
@@ -480,6 +547,38 @@ const data = {
                 49.8062903,
                 -97.1419932
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "SD West Lot": {
@@ -505,6 +604,38 @@ const data = {
                 49.8050535,
                 -97.1502512
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     },
     "SD East Lot": {
@@ -530,6 +661,1533 @@ const data = {
                 49.8054621,
                 -97.1488296
             ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "A Lot": {
+        "map_display_name": "A",
+        "area": [
+            [
+                49.8112811,
+                -97.1358854
+            ],
+            [
+                49.8107826,
+                -97.1354938
+            ],
+            [
+                49.8108623,
+                -97.1352363
+            ],
+            [
+                49.8113608,
+                -97.1356279
+            ],
+            [
+                49.8112811,
+                -97.1358854
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "V Lot": {
+        "map_display_name": "V",
+        "area": [
+            [
+                49.8096609,
+                -97.1397546
+            ],
+            [
+                49.8094358,
+                -97.139583
+            ],
+            [
+                49.8095397,
+                -97.1392504
+            ],
+            [
+                49.8097612,
+                -97.1394221
+            ],
+            [
+                49.8096609,
+                -97.1397546
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "Q Lot": {
+        "map_display_name": "Q",
+        "area": [
+            [
+                49.8105419,
+                -97.1397609
+            ],
+            [
+                49.8104312,
+                -97.139675
+            ],
+            [
+                49.8110681,
+                -97.1378511
+            ],
+            [
+                49.811165,
+                -97.1379262
+            ],
+            [
+                49.8105419,
+                -97.1397609
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "L Lot": {
+        "map_display_name": "L",
+        "area": [
+            [
+                49.8123315,
+                -97.129628
+            ],
+            [
+                49.8113864,
+                -97.1289145
+            ],
+            [
+                49.8116184,
+                -97.1281849
+            ],
+            [
+                49.812463,
+                -97.1288769
+            ],
+            [
+                49.8123315,
+                -97.129628
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "Parkade": {
+        "map_display_name": "Parkade",
+        "area": [
+            [
+                49.8096305,
+                -97.136576
+            ],
+            [
+                49.8091424,
+                -97.1361791
+            ],
+            [
+                49.8094228,
+                -97.1352779
+            ],
+            [
+                49.8099283,
+                -97.1356856
+            ],
+            [
+                49.8096305,
+                -97.136576
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "B Lot": {
+        "map_display_name": "B",
+        "area": [
+            [
+                49.8111745,
+                -97.1292292
+            ],
+            [
+                49.810593,
+                -97.1287464
+            ],
+            [
+                49.8106968,
+                -97.1284889
+            ],
+            [
+                49.8112472,
+                -97.1290307
+            ],
+            [
+                49.8111745,
+                -97.1292292
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "Stores Lot": {
+        "map_display_name": "Stores",
+        "area": [
+            [
+                49.8053874,
+                -97.1337929
+            ],
+            [
+                49.8053182,
+                -97.1337313
+            ],
+            [
+                49.8053744,
+                -97.133569
+            ],
+            [
+                49.8054428,
+                -97.133628
+            ],
+            [
+                49.8053874,
+                -97.1337929
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": true,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },               
+
+
+
+    /*
+    *
+    END OF STRICTLY PUBLIC USE ONLY (PAY PER USE, NO PERMITS REQUIRED)
+    This is now strictly staff only parking
+    *
+    */
+
+
+
+
+
+    "B Lot": {
+        "map_display_name": "B",
+        "area": [
+            [
+                49.8103541,
+                -97.1303504
+            ],
+            [
+                49.8102987,
+                -97.1305167
+            ],
+            [
+                49.8100771,
+                -97.130345
+            ],
+            [
+                49.8101395,
+                -97.1301734
+            ],
+            [
+                49.8103541,
+                -97.1303504
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "K Lot": {
+        "map_display_name": "K",
+        "area": [
+            [
+                49.8121019,
+                -97.1377414
+            ],
+            [
+                49.811368,
+                -97.1371782
+            ],
+            [
+                49.8115272,
+                -97.1367356
+            ],
+            [
+                49.8119928,
+                -97.1371406
+            ],
+            [
+                49.8121019,
+                -97.1377414
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "A Lot": {
+        "map_display_name": "A",
+        "area": [
+            [
+                49.8107112,
+                -97.1353884
+            ],
+            [
+                49.8103234,
+                -97.1350987
+            ],
+            [
+                49.8104031,
+                -97.1348359
+            ],
+            [
+                49.8107942,
+                -97.1351148
+            ],
+            [
+                49.8107112,
+                -97.1353884
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "N Lot": {
+        "map_display_name": "N",
+        "area": [
+            [
+                49.8096936,
+                -97.1334419
+            ],
+            [
+                49.8099809,
+                -97.1324656
+            ],
+            [
+                49.8094685,
+                -97.1320418
+            ],
+            [
+                49.8091501,
+                -97.1329269
+            ],
+            [
+                49.8089839,
+                -97.1327982
+            ],
+            [
+                49.8093508,
+                -97.1316287
+            ],
+            [
+                49.8102578,
+                -97.1324012
+            ],
+            [
+                49.8098563,
+                -97.1335599
+            ],
+            [
+                49.8096936,
+                -97.1334419
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "CTC Lot": {
+        "map_display_name": "CTC",
+        "area": [
+            [
+                49.8090743,
+                -97.1294048
+            ],
+            [
+                49.8089393,
+                -97.1293083
+            ],
+            [
+                49.8090743,
+                -97.1288952
+            ],
+            [
+                49.8088735,
+                -97.1287343
+            ],
+            [
+                49.8089462,
+                -97.1285197
+            ],
+            [
+                49.8092786,
+                -97.1287933
+            ],
+            [
+                49.8090743,
+                -97.1294048
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "ABC Lot": {
+        "map_display_name": "ABC",
+        "area": [
+            [
+                49.8107715,
+                -97.1419294
+            ],
+            [
+                49.8106036,
+                -97.1417524
+            ],
+            [
+                49.8107196,
+                -97.1414118
+            ],
+            [
+                49.8108961,
+                -97.1415647
+            ],
+            [
+                49.8107715,
+                -97.1419294
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "V Lot": {
+        "map_display_name": "V",
+        "area": [
+            [
+                49.8094919,
+                -97.1403308
+            ],
+            [
+                49.8092565,
+                -97.1401377
+            ],
+            [
+                49.8094348,
+                -97.1396039
+            ],
+            [
+                49.809665,
+                -97.1397917
+            ],
+            [
+                49.8094919,
+                -97.1403308
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "P Lot": {
+        "map_display_name": "P",
+        "area": [
+            [
+                49.8090038,
+                -97.138548
+            ],
+            [
+                49.8087096,
+                -97.1382905
+            ],
+            [
+                49.80926,
+                -97.1365149
+            ],
+            [
+                49.8095854,
+                -97.1367831
+            ],
+            [
+                49.8090038,
+                -97.138548
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "ALC Lot": {
+        "map_display_name": "ALC",
+        "area": [
+            [
+                49.8074377,
+                -97.1374434
+            ],
+            [
+                49.8070984,
+                -97.1371859
+            ],
+            [
+                49.8071988,
+                -97.1368747
+            ],
+            [
+                49.8068595,
+                -97.1366065
+            ],
+            [
+                49.8069253,
+                -97.1364027
+            ],
+            [
+                49.80759,
+                -97.1369177
+            ],
+            [
+                49.8074377,
+                -97.1374434
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "J Lot": {
+        "map_display_name": "J",
+        "area": [
+            [
+                49.8078116,
+                -97.1360701
+            ],
+            [
+                49.8075035,
+                -97.1358341
+            ],
+            [
+                49.8075554,
+                -97.1356892
+            ],
+            [
+                49.8073442,
+                -97.1355122
+            ],
+            [
+                49.8073788,
+                -97.1354103
+            ],
+            [
+                49.8078843,
+                -97.1358341
+            ],
+            [
+                49.8078116,
+                -97.1360701
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "Y Lot": {
+        "map_display_name": "Y",
+        "area": [
+            [
+                49.8054774,
+                -97.1379624
+            ],
+            [
+                49.8051969,
+                -97.1377102
+            ],
+            [
+                49.8055501,
+                -97.1366266
+            ],
+            [
+                49.805834,
+                -97.1368734
+            ],
+            [
+                49.8054774,
+                -97.1379624
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "G Lot": {
+        "map_display_name": "G",
+        "area": [
+            [
+                49.8056391,
+                -97.1364848
+            ],
+            [
+                49.8055155,
+                -97.1363799
+            ],
+            [
+                49.8057613,
+                -97.1354894
+            ],
+            [
+                49.8060832,
+                -97.1357683
+            ],
+            [
+                49.8061732,
+                -97.1354894
+            ],
+            [
+                49.8064641,
+                -97.1357147
+            ],
+            [
+                49.8063048,
+                -97.1363316
+            ],
+            [
+                49.8058132,
+                -97.1359453
+            ],
+            [
+                49.8056391,
+                -97.1364848
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "E Lot": {
+        "map_display_name": "E",
+        "area": [
+            [
+                49.8060832,
+                -97.1357683
+            ],
+            [
+                49.8055605,
+                -97.1353177
+            ],
+            [
+                49.8057959,
+                -97.1346096
+            ],
+            [
+                49.8063429,
+                -97.1350066
+            ],
+            [
+                49.8060832,
+                -97.1357683
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "W Lot": {
+        "map_display_name": "W",
+        "area": [
+            [
+                49.8051519,
+                -97.1363423
+            ],
+            [
+                49.8048299,
+                -97.1361331
+            ],
+            [
+                49.8050619,
+                -97.135425
+            ],
+            [
+                49.8049546,
+                -97.1353016
+            ],
+            [
+                49.8050688,
+                -97.1349422
+            ],
+            [
+                49.8054843,
+                -97.1352641
+            ],
+            [
+                49.8051519,
+                -97.1363423
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "S Lot": {
+        "map_display_name": "S",
+        "area": [
+            [
+                49.806478,
+                -97.1339499
+            ],
+            [
+                49.8061387,
+                -97.1336387
+            ],
+            [
+                49.806343,
+                -97.1330165
+            ],
+            [
+                49.8065092,
+                -97.1331506
+            ],
+            [
+                49.8063915,
+                -97.1335583
+            ],
+            [
+                49.806568,
+                -97.1337138
+            ],
+            [
+                49.806478,
+                -97.1339499
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "D Lot": {
+        "map_display_name": "D",
+        "area": [
+            [
+                49.8063811,
+                -97.1325766
+            ],
+            [
+                49.8060314,
+                -97.1322815
+            ],
+            [
+                49.8061387,
+                -97.1320133
+            ],
+            [
+                49.8064815,
+                -97.1322815
+            ],
+            [
+                49.8063811,
+                -97.1325766
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
         ]
     }
+    
+
 }
