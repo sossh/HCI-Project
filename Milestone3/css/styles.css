@@ -287,6 +287,10 @@ h2 {
   transition: background-color 0.2s ease;
 }
 
+
+/* ========================================= */
+/*       Leaflet Map - Parking Lot Label     */
+/* ========================================= */
 .polygon-label {
       background: none !important;
       /* remove the white box */
