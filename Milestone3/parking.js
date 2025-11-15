@@ -42,8 +42,8 @@ function buildAreas() {
     // const filteredLots = getFilteredParkingLots(filters)
 
     drawLots(publicLots, '#3388ff');
-    drawLots(studentLot, '#ff3388');
-    drawLots(staffLots, '#ffaa33');
+    drawLots(staffLots, '#ff3388');
+    drawLots(studentLot, '#ffaa33');
     
 }
 
