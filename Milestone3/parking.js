@@ -980,8 +980,8 @@ const data = {
             }
         ]
     },
-    "B Lot": {
-        "map_display_name": "B",
+    "B.Public Lot": {
+        "map_display_name": "B (Public)",
         "area": [
             [
                 49.8111745,
@@ -1108,28 +1108,28 @@ const data = {
 
 
 
-    "B Lot": {
-        "map_display_name": "B",
+    "B1 Lot": {
+        "map_display_name": "B1",
         "area": [
             [
-                49.8103541,
-                -97.1303504
+                49.8109535,
+                -97.1299023
             ],
             [
-                49.8102987,
-                -97.1305167
+                49.8103546,
+                -97.129441
             ],
             [
-                49.8100771,
-                -97.130345
+                49.8105589,
+                -97.1288348
             ],
             [
-                49.8101395,
-                -97.1301734
+                49.8111508,
+                -97.1293122
             ],
             [
-                49.8103541,
-                -97.1303504
+                49.8109535,
+                -97.1299023
             ]
         ],
         "parking_spots": [
@@ -1256,6 +1256,258 @@ const data = {
             [
                 49.8107112,
                 -97.1353884
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "B2 Lot": {
+        "map_display_name": "B2",
+        "area": [
+            [
+                49.8122517,
+                -97.1299037
+            ],
+            [
+                49.811324,
+                -97.1291634
+            ],
+            [
+                49.8113829,
+                -97.1289649
+            ],
+            [
+                49.8123141,
+                -97.1296677
+            ],
+            [
+                49.8122517,
+                -97.1299037
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "B3 Lot": {
+        "map_display_name": "B3",
+        "area": [
+            [
+                49.8107141,
+                -97.1306186
+            ],
+            [
+                49.8101325,
+                -97.1301305
+            ],
+            [
+                49.8101879,
+                -97.1299749
+            ],
+            [
+                49.8107695,
+                -97.1304577
+            ],
+            [
+                49.8107141,
+                -97.1306186
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "B4 Lot": {
+        "map_display_name": "B4",
+        "area": [
+            [
+                49.8103541,
+                -97.1303504
+            ],
+            [
+                49.8102987,
+                -97.1305167
+            ],
+            [
+                49.8100771,
+                -97.130345
+            ],
+            [
+                49.8101395,
+                -97.1301734
+            ],
+            [
+                49.8103541,
+                -97.1303504
+            ]
+        ],
+        "parking_spots": [
+            {
+                "spot_id": 1,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 2,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            },
+            {
+                "spot_id": 3,
+                "isAvailiable": true,
+                "isAvailable": true,
+                "isStaff": true,
+                "isFaculty": false,
+                "isStudent": false,
+                "isVisitor": false,
+                "isCovered": false,
+                "isElectric": false,
+                "isAccessible": true
+            }
+        ]
+    },
+    "B5 Lot": {
+        "map_display_name": "B5",
+        "area": [
+            [
+                49.811247,
+                -97.1289595
+            ],
+            [
+                49.8107416,
+                -97.1284445
+            ],
+            [
+                49.8110393,
+                -97.1274896
+            ],
+            [
+                49.8115793,
+                -97.1279617
+            ],
+            [
+                49.811247,
+                -97.1289595
             ]
         ],
         "parking_spots": [
