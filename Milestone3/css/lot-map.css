@@ -7,18 +7,16 @@ html {
   font-family: Helvetica, sans-serif;
 }
 
-
 #parking-overlay-container {
-
   width: 100%;
   height: 100%;
-  display: flex; 
+  display: flex;
   flex-direction: column;
- 
-  position: fixed; 
+
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; 
+  z-index: 1000;
   display: none;
 }
 
@@ -36,32 +34,89 @@ html {
   font-size: 18px;
 }
 
-#close-button {
-  background-color: #1b4571;
-  color: white;
-  border: solid #dddddd 1px;
-  padding: 7px 14px;
-  border-radius: 5px;
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.info-container {
+  position: relative;
+}
+#info-button {
+  background: none;
+  border: solid white 2px;
+  font-weight: bold;
   cursor: pointer;
   font-size: 15px;
+  line-height: 1;
+  color: white;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+#info-button:hover {
+  background-color: #3287e1;
+}
+#info {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 3px;
+
+  display: none;
+
+  background-color: #ffffff;
+  color: #333333;
+  white-space: nowrap;
+  z-index: 1000;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#info.show {
+  display: block;
+}
+
+.instructions ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.close-button-container {
+  display: flex;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  overflow: hidden;
+}
+#close-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 35px;
+  padding-block: 0px;
 }
 #close-button:hover {
-  background-color: #2460a0;
+  background-color: #3287e1;
 }
-
-
 
 #lot-view {
   position: relative;
-  flex-grow: 1;
   overflow: hidden;
-  box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
 #parking-lot {
-    background-color: #dddddd;
-    border-radius: 10px;
+  background-color: #dddddd;
+  border-radius: 10px;
   width: min-content;
   height: min-content;
   display: grid;
@@ -69,7 +124,105 @@ html {
   padding: 20px;
 }
 
-/* 4. A single parking spot */
+#legend-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  width: 177px;
+}
+
+#legend-button {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#legend-container.open #legend-button {
+  border-bottom: 1px solid #838383;
+  border-top: 1px solid #838383;
+  border-radius: 0 0 5px 5px;
+}
+
+#legend-button .arrow {
+  font-weight: 100;
+  transform: scaleX(1.7);
+  position: relative;
+  top: 3px;
+  font-size: 20px;
+}
+
+#legend-container.open .arrow {
+  font-weight: 100;
+  transform: rotate(180deg) scaleX(1.7);
+  position: relative;
+  top: -3px;
+  font-size: 20px;
+}
+
+#legend {
+  display: none;
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  position: absolute;
+  bottom: 35px;
+}
+
+#legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#legend li {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-block: 7px;
+}
+
+#legend.show {
+  display: block;
+}
+
+#legend .spot {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  cursor: default;
+  pointer-events: none;
+}
+
+#legend .spot .accessible-icon {
+  width: 21px;
+  height: 21px;
+}
+
+#legend .spot .ev-icon {
+  width: 21px;
+  height: 21px;
+}
+
+#legend .spot .covered-icon {
+  width: 21px;
+  height: 21px;
+}
+
 .spot {
   background-color: #ffffff;
   border: 1px solid #696969;
@@ -107,7 +260,6 @@ html {
   background-color: #fdbdc3;
   border-color: #e93431;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
 .spot.occupied:hover {
@@ -119,12 +271,44 @@ html {
   border-color: #47a9ff;
 }
 
+.accessible-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
 .spot.accessible:hover {
   background-color: #72b3e8;
 }
 
 .spot.ev {
-  border-color: #c636ff;
+  background-color: #e3b8f6;
+  border-color: #c27def;
+}
+
+.spot.ev:hover {
+  background-color: #d299ed;
+}
+
+.ev-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.spot.covered {
+  background-color: #ffe599;
+  border-color: #efc94b;
+}
+
+.spot.covered:hover {
+  background-color: #f6da86;
+}
+
+.covered-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
 }
 
 .spot.selected {
@@ -134,17 +318,6 @@ html {
 
 .spot.selected:hover {
   background-color: #7fc881;
-}
-
-.instructions {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 7px 14px;
-  border-radius: 5px;
-  font-size: 14px;
 }
 
 #bottom-bar {

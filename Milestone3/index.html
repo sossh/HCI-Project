@@ -14,27 +14,31 @@
     />
   </head>
 
-<body>
+  <body>
     <div class="top-row">
-        <header>
-            <h1>UM Park</h1>
-        </header>
+      <header>
+        <h1>UM Park</h1>
+      </header>
 
-        <div class="lot-bar">
-            <button class="lot-btn" id="prev-lot">⟨ Prev</button>
-            <div class="lot-dropdown-container">
-                <select id="lot-selector" class="lot-dropdown">
-                    <option>Lot A - Engineering</option>
-                    <option>Lot B - Agriculture</option>
-                    <option>Lot C - Science</option>
-                    <option>Lot D - Admin</option>
-                    <option>Lot E - Stadium</option>
-                </select>
+      <div class="lot-bar">
+        <button class="lot-btn" id="prev-lot">⟨ Prev</button>
+        <div class="lot-dropdown-container">
+          <select id="lot-selector" class="lot-dropdown">
+            <option>Lot A - Engineering</option>
+            <option>Lot B - Agriculture</option>
+            <option>Lot C - Science</option>
+            <option>Lot D - Admin</option>
+            <option>Lot E - Stadium</option>
+          </select>
 
-                <img src="images/arrowDropdown.png" class="lot-arrow" alt="Dropdown Arrow">
-            </div>
-            <button class="lot-btn" id="next-lot">Next ⟩</button>
+          <img
+            src="images/arrowDropdown.png"
+            class="lot-arrow"
+            alt="Dropdown Arrow"
+          />
         </div>
+        <button class="lot-btn" id="next-lot">Next ⟩</button>
+      </div>
     </div>
 
     <!-- Left Filter Sidebar -->
@@ -66,86 +70,87 @@
           <span id="distance-value">100m</span>
         </aside>
 
-            <!-- Filters Card -->
-            <aside class="filters">
-            <h2>Filters</h2>
+        <!-- Filters Card -->
+        <aside class="filters">
+          <h2>Filters</h2>
 
-            <div class="scrollable">
-                <h3>Permit Type</h3>
+          <div class="scrollable">
+            <h3>Permit Type</h3>
 
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="faculty" />
-                    Faculty
-                </span>
-                <img src="images/faculty.png" alt="Faculty Icon" class="icon" />
-                </label>
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="faculty" />
+                Faculty
+              </span>
+              <img src="images/faculty.png" alt="Faculty Icon" class="icon" />
+            </label>
 
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="student" />
-                    Student
-                </span>
-                <img src="images/student.png" alt="Student Icon" class="icon" />
-                </label>
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="student" />
+                Student
+              </span>
+              <img src="images/student.png" alt="Student Icon" class="icon" />
+            </label>
 
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="visitor" />
-                    Visitor
-                </span>
-                <img src="images/visitor.png" alt="Visitor Icon" class="icon" />
-                </label>
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="visitor" />
+                Visitor
+              </span>
+              <img src="images/visitor.png" alt="Visitor Icon" class="icon" />
+            </label>
+
+            <hr />
+
+            <h3>Spot Features</h3>
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="bike" />
+                Bike
+              </span>
+              <img src="images/covered.png" alt="Bike Icon" class="icon" />
+            </label>
+
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="electric" />
+                Electric
+              </span>
+              <img src="images/electric.png" alt="Electric Icon" class="icon" />
+            </label>
+
+            <label>
+              <span class="label-left">
+                <input type="checkbox" id="accessible" />
+                Accessible
+              </span>
+              <img
+                src="images/accessible.png"
+                alt="Accessible Icon"
+                class="icon"
+              />
+            </label>
+          </div>
 
           <hr />
 
-                <h3>Spot Features</h3>
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="bike" />
-                    Bike
-                </span>
-                <img src="images/covered.png" alt="Bike Icon" class="icon" />
-                </label>
+          <h3>Traffic:</h3>
+          <input type="range" id="traffic-range" min="0" max="100" value="25" />
+          <br />
+          <span id="traffic-value">25</span>
+        </aside>
+      </div>
 
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="electric" />
-                    Electric
-                </span>
-                <img src="images/electric.png" alt="Electric Icon" class="icon" />
-                </label>
+      <!-- Right side: lot bar above map -->
+      <div class="right-panel">
+        <main class="map-area">
+          <div id="map-frame"></div>
 
-                <label>
-                <span class="label-left">
-                    <input type="checkbox" id="accessible" />
-                    Accessible
-                </span>
-                <img src="images/accessible.png" alt="Accessible Icon" class="icon" />
-                </label>
-            </div>
-
-            <hr>
-
-            <h3>Traffic:</h3>
-            <input type="range" id="traffic-range" min="0" max="100" value="25" />
-            <br />
-            <span id="traffic-value">25</span>
-            </aside>
-        </div>
-
-        <!-- Right side: lot bar above map -->
-        <div class="right-panel">
-
-            <main class="map-area">
-                <div id="map-frame">
-
-                </div>
-                
-                <div class="active-filters" id="active-filters">
-                    <!-- Icons will be inserted here via JS -->
-                </div>
-            </main>
+          <div class="active-filters" id="active-filters">
+            <!-- Icons will be inserted here via JS -->
+          </div>
+        </main>
 
         <div class="nav-bar">
           <button class="nav-btn" id="back-nav">⟨ Back</button>
@@ -159,27 +164,61 @@
     <div id="parking-overlay-container">
       <div id="top-bar">
         <h1 id="lot-name">Parking Lot</h1>
-        <button id="close-button">Close</button>
+        <div class="top-bar-right">
+          <div class="info-container">
+            <button id="info-button">?</button>
+            <div id="info" class="instructions show">
+              <ul>
+                <li>Click and drag to pan. Mouse wheel to zoom.</li>
+                <li>Click spots to select.</li>
+                <li>Only one spot can be selected at a time.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="close-button-container">
+            <button id="close-button">&times;</button>
+          </div>
+        </div>
       </div>
 
       <div id="lot-view">
-        <!-- <div class="legend">
-          <ul>
-            <li><span class="spot legend available"></span> Available Spot</li>
-            <li><span class="spot legend selected"></span> Selected Spot</li>
-            <li><span class="spot legend occupied"></span> Occupied Spot</li>
-            <li>
-              <span class="spot legend accessible"></span> Accessible Spot
-            </li>
-            <li><span class="spot legend ev"></span> EV Spot</li>
-          </ul>
-        </div> -->
-
         <div id="parking-lot"></div>
+        <div id="legend-container">
+          <div id="legend">
+            <ul>
+              <li><span class="spot"></span> Available</li>
+              <li><span class="spot selected"></span> Selected</li>
+              <li><span class="spot occupied"></span> Occupied</li>
+              <li>
+                <span class="spot accessible">
+                  <img
+                    src="./images/lot-map-accessible.svg"
+                    class="accessible-icon"
+                  />
+                </span>
+                Accessible
+              </li>
+              <li>
+                <span class="spot ev">
+                  <img src="./images/lot-map-electric.svg" class="ev-icon" />
+                </span>
+                EV Charging
+              </li>
+              <li>
+                <span class="spot covered">
+                  <img
+                    src="./images/lot-map-covered.svg"
+                    class="covered-icon"
+                  />
+                </span>
+                Covered
+              </li>
+            </ul>
+          </div>
 
-        <div class="instructions">
-          Click and drag to pan. Mouse wheel to zoom.<br />Click spots to
-          select. Only one spot can be selected at a time.
+          <button id="legend-button">
+            Legend <span class="arrow">^</span>
+          </button>
         </div>
       </div>
 
@@ -207,7 +246,7 @@
     <script src="parking.js"></script>
     <script src="js/script.js"></script>
     <script src="leafLet.js"></script>
-    
+
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
