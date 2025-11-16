@@ -45,6 +45,16 @@ function buildAreas() {
 
   for (const parkingLot of filteredLots) {
     coords = data[parkingLot]["area"];
+    drawLots(publicLots, '#3388ff');
+    drawLots(staffLots, '#ff3388');
+    drawLots(studentLot, '#ffaa33');
+    
+}
+
+function drawLots(nameLot, color){
+
+    filters = []
+    const filteredLots = getFilteredParkingLots(filters, nameLot)
 
     const campusPolygon = L.polygon(coords, {
       color: "blue", // outline color
@@ -67,56 +77,81 @@ function buildAreas() {
     campusPolygon.on("mouseover", () => onHover(campusPolygon));
     campusPolygon.on("mouseout", () => onOut(campusPolygon));
   }
+    for(const parkingLot of filteredLots) {
+        let coords = nameLot[parkingLot]["area"]
+
+        const campusPolygon = L.polygon(coords, {
+            color: 'grey',         // outline color
+            weight: 3,             // outline thickness
+            fillColor: color,  // inside color
+            fillOpacity: 0.4       // transparency
+        }).addTo(map);
+
+        // Add text label (always visible)
+        campusPolygon.bindTooltip(nameLot[parkingLot]["map_display_name"], {
+            permanent: true,
+            direction: "center",
+            className: "polygon-label" // optional custom style
+        });
+
+        // Create a event listener on each campusPolygon, call onLotClick function
+        campusPolygon.on('click', () => onLotClick(campusPolygon));
+        campusPolygon.on('mouseover', () => onHover(campusPolygon));
+        campusPolygon.on('mouseout', () => onOut(campusPolygon));
+    }
 }
 
 // Return all parking lots that have at least one spot where the given filters are true
 // Filters are just the tags given to each parking spot, example: ["isAccessible", "isAvailiable"]
 // If no filters are given returns all parking lots
-function getFilteredParkingLots(filters) {
-  let filteredLots = [];
+function getFilteredParkingLots(filters, nameLot){
 
-  // Itterate over all parking lots
-  for (const parkingLot of Object.keys(data)) {
-    let parkingSpots = [];
-    if ("parking_spots" in data[parkingLot]) {
-      parkingSpots = data[parkingLot]["parking_spots"];
-    }
+    let filteredLots = []
 
-    let hasAllFilters = true;
+    // Itterate over all parking lots
+    for(const parkingLot of Object.keys(nameLot)){
 
-    // Make sure all filters appear at least once
-    for (const filter of filters) {
-      let hasFilter = false;
-
-      // Check if the filter exists in at least one
-      for (const parkingSpot of parkingSpots) {
-        if (filter in parkingSpot && parkingSpot[filter] == true) {
-          hasFilter = true;
-          break;
+        let parkingSpots = [];
+        if("parking_spots" in nameLot[parkingLot]){
+            parkingSpots = nameLot[parkingLot]["parking_spots"];
         }
-      }
+        
+        let hasAllFilters = true;
+        
 
-      // Stop looping for this lot if it doesnt have this filter
-      hasAllFilters = hasAllFilters && hasFilter;
-      if (hasAllFilters == false) {
-        break;
-      }
+        // Make sure all filters appear at least once
+        for(const filter of filters){
+
+            let hasFilter = false;
+                
+            // Check if the filter exists in at least one 
+            for(const parkingSpot of parkingSpots){
+                if(filter in parkingSpot && parkingSpot[filter] == true){
+                    hasFilter = true;
+                    break;
+                }
+
+            }
+
+            // Stop looping for this lot if it doesnt have this filter
+            hasAllFilters = hasAllFilters && hasFilter;
+            if(hasAllFilters == false){
+                break;
+            }
+        }
+
+        // If this lot has all filters add it to the good list
+        if(hasAllFilters){
+            filteredLots.push(parkingLot)
+        }
+
     }
 
-    // If this lot has all filters add it to the good list
-    if (hasAllFilters) {
-      filteredLots.push(parkingLot);
-    }
-  }
-
-  return filteredLots;
+    return filteredLots
+    
 }
 
-
-
-
-const data = {
-
+const publicLots = {
     //From this comment to the next comment, contain all public parking lots that are pay per use, no permits needed.
     "ACW Lot": {
         "map_display_name": "ACW",
@@ -1086,21 +1121,10 @@ const data = {
                 "isAccessible": true
             }
         ]
-    },               
+    }
+}
 
-
-
-    /*
-    *
-    END OF STRICTLY PUBLIC USE ONLY (PAY PER USE, NO PERMITS REQUIRED)
-    This is now strictly staff only parking
-    *
-    */
-
-
-
-
-
+const staffLots = {
     "B1 Lot": {
         "map_display_name": "B1",
         "area": [
@@ -2433,6 +2457,4 @@ const data = {
             }
         ]
     }
-    
-
 }
