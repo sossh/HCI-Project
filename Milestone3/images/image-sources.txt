@@ -1,0 +1,3 @@
+lot-map-accessible: https://www.svgrepo.com/svg/491215/disabled-toilet
+lot-map-electric: https://www.svgrepo.com/svg/346651/charging-pile
+lot-map-covered: https://www.svgrepo.com/svg/393336/parking-garage

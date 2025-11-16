@@ -7,13 +7,13 @@ var parkingLots = {
     defaultSpotPrice: 12,
     specialSpots: [
       { row: 0, col: 0, status: "occupied" },
-      { row: 0, col: 1, features: ["accessible", "ev"], price: 12 },
+      { row: 0, col: 1, features: ["accessible"], price: 12 },
       { row: 0, col: 2, features: ["accessible"], price: 12 },
       { row: 1, col: 0, status: "occupied" },
       { row: 1, col: 1, features: ["accessible"], price: 15 },
       { row: 2, col: 4, features: ["ev"], price: 15 },
       { row: 2, col: 5, features: ["ev"], price: 15 },
-      { row: 3, col: 0, features: ["empty"], price: 15 },
+      { row: 3, col: 0, features: ["covered"], price: 15 },
       { row: 3, col: 1, features: ["empty"], price: 15 },
       { row: 3, col: 2, features: ["empty"], price: 15 },
       { row: 3, col: 3, features: ["empty"], price: 15 },
@@ -23,7 +23,7 @@ var parkingLots = {
       { row: 7, col: 0, features: ["empty"], price: 15 },
     ],
   },
-  "Parkade": {
+  Parkade: {
     name: "Parkade",
     rows: 10,
     cols: 10,
@@ -38,7 +38,187 @@ var parkingLots = {
       { row: 9, col: 0, features: ["accessible"], price: 5 },
       { row: 9, col: 1, features: ["accessible"], price: 5 },
     ],
-  }
+  },
+  "N Lot": {
+    name: "N Lot",
+    rows: 16,
+    cols: 14,
+    defaultSpotPrice: 12,
+    specialSpots: [
+      { row: 0, col: 0, features: ["accessible"], price: 12 },
+      { row: 0, col: 1, features: ["accessible"], price: 12 },
+      { row: 0, col: 12, features: ["ev"], price: 15 },
+      { row: 0, col: 13, features: ["empty"], price: 0 },
+      { row: 1, col: 0, features: ["empty"], price: 0 },
+      { row: 1, col: 1, features: ["empty"], price: 0 },
+      { row: 1, col: 2, features: ["empty"], price: 0 },
+      { row: 1, col: 3, features: ["empty"], price: 0 },
+      { row: 1, col: 4, features: ["empty"], price: 0 },
+      { row: 1, col: 5, features: ["empty"], price: 0 },
+      { row: 1, col: 6, features: ["empty"], price: 0 },
+      { row: 1, col: 7, features: ["empty"], price: 0 },
+      { row: 1, col: 8, features: ["empty"], price: 0 },
+      { row: 1, col: 9, features: ["empty"], price: 0 },
+      { row: 1, col: 10, features: ["empty"], price: 0 },
+      { row: 1, col: 11, features: ["empty"], price: 0 },
+      { row: 1, col: 12, features: ["empty"], price: 0 },
+      { row: 1, col: 13, features: ["ev"], price: 15 },
+      { row: 2, col: 0, features: ["empty"], price: 0 },
+      { row: 2, col: 1, features: ["empty"], price: 0 },
+      { row: 2, col: 2, features: ["empty"], price: 0 },
+      { row: 2, col: 3, features: ["empty"], price: 0 },
+      { row: 2, col: 4, features: ["empty"], price: 0 },
+      { row: 2, col: 5, features: ["empty"], price: 0 },
+      { row: 2, col: 6, features: ["empty"], price: 0 },
+      { row: 2, col: 7, features: ["empty"], price: 0 },
+      { row: 2, col: 8, features: ["empty"], price: 0 },
+      { row: 2, col: 9, features: ["empty"], price: 0 },
+      { row: 2, col: 10, features: ["empty"], price: 0 },
+      { row: 2, col: 11, features: ["empty"], price: 0 },
+      { row: 2, col: 12, features: ["empty"], price: 0 },
+      { row: 3, col: 0, features: ["accessible"], price: 12 },
+      { row: 3, col: 1, features: ["accessible"], price: 12 },
+      { row: 3, col: 2, features: ["accessible"], price: 12 },
+      { row: 3, col: 10, features: ["empty"], price: 0 },
+      { row: 3, col: 11, features: ["empty"], price: 0 },
+      { row: 3, col: 12, features: ["empty"], price: 0 },
+      { row: 4, col: 0, features: ["empty"], price: 0 },
+      { row: 4, col: 1, features: ["empty"], price: 0 },
+      { row: 4, col: 2, features: ["empty"], price: 0 },
+      { row: 4, col: 3, features: ["empty"], price: 0 },
+      { row: 4, col: 4, features: ["empty"], price: 0 },
+      { row: 4, col: 5, features: ["empty"], price: 0 },
+      { row: 4, col: 6, features: ["empty"], price: 0 },
+      { row: 4, col: 7, features: ["empty"], price: 0 },
+      { row: 4, col: 8, features: ["empty"], price: 0 },
+      { row: 4, col: 9, features: ["empty"], price: 0 },
+      { row: 4, col: 11, features: ["empty"], price: 0 },
+      { row: 4, col: 12, features: ["empty"], price: 0 },
+      { row: 5, col: 0, features: ["empty"], price: 0 },
+      { row: 5, col: 1, features: ["empty"], price: 0 },
+      { row: 5, col: 2, features: ["empty"], price: 0 },
+      { row: 5, col: 3, features: ["empty"], price: 0 },
+      { row: 5, col: 4, features: ["empty"], price: 0 },
+      { row: 5, col: 5, features: ["empty"], price: 0 },
+      { row: 5, col: 6, features: ["empty"], price: 0 },
+      { row: 5, col: 7, features: ["empty"], price: 0 },
+      { row: 5, col: 8, features: ["empty"], price: 0 },
+      { row: 5, col: 9, features: ["empty"], price: 0 },
+      { row: 5, col: 11, features: ["empty"], price: 0 },
+      { row: 5, col: 12, features: ["empty"], price: 0 },
+      { row: 6, col: 0, features: ["empty"], price: 0 },
+      { row: 6, col: 1, features: ["empty"], price: 0 },
+      { row: 6, col: 2, features: ["empty"], price: 0 },
+      { row: 6, col: 3, features: ["empty"], price: 0 },
+      { row: 6, col: 4, features: ["empty"], price: 0 },
+      { row: 6, col: 5, features: ["empty"], price: 0 },
+      { row: 6, col: 6, features: ["empty"], price: 0 },
+      { row: 6, col: 7, features: ["empty"], price: 0 },
+      { row: 6, col: 8, features: ["empty"], price: 0 },
+      { row: 6, col: 9, features: ["empty"], price: 0 },
+      { row: 6, col: 11, features: ["empty"], price: 0 },
+      { row: 6, col: 12, features: ["empty"], price: 0 },
+      { row: 6, col: 13, features: ["accessible"], price: 12 },
+      { row: 7, col: 0, features: ["empty"], price: 0 },
+      { row: 7, col: 1, features: ["empty"], price: 0 },
+      { row: 7, col: 2, features: ["empty"], price: 0 },
+      { row: 7, col: 3, features: ["empty"], price: 0 },
+      { row: 7, col: 4, features: ["empty"], price: 0 },
+      { row: 7, col: 5, features: ["empty"], price: 0 },
+      { row: 7, col: 6, features: ["empty"], price: 0 },
+      { row: 7, col: 7, features: ["empty"], price: 0 },
+      { row: 7, col: 8, features: ["empty"], price: 0 },
+      { row: 7, col: 9, features: ["empty"], price: 0 },
+      { row: 7, col: 11, features: ["empty"], price: 0 },
+      { row: 7, col: 12, features: ["empty"], price: 0 },
+      { row: 7, col: 13, features: ["accessible"], price: 12 },
+      { row: 8, col: 0, features: ["empty"], price: 0 },
+      { row: 8, col: 1, features: ["empty"], price: 0 },
+      { row: 8, col: 2, features: ["empty"], price: 0 },
+      { row: 8, col: 3, features: ["empty"], price: 0 },
+      { row: 8, col: 4, features: ["empty"], price: 0 },
+      { row: 8, col: 5, features: ["empty"], price: 0 },
+      { row: 8, col: 6, features: ["empty"], price: 0 },
+      { row: 8, col: 7, features: ["empty"], price: 0 },
+      { row: 8, col: 8, features: ["empty"], price: 0 },
+      { row: 8, col: 9, features: ["empty"], price: 0 },
+      { row: 8, col: 11, features: ["empty"], price: 0 },
+      { row: 8, col: 12, features: ["empty"], price: 0 },
+      { row: 8, col: 13, features: ["accessible"], price: 12 },
+      { row: 9, col: 0, features: ["empty"], price: 0 },
+      { row: 9, col: 1, features: ["empty"], price: 0 },
+      { row: 9, col: 2, features: ["empty"], price: 0 },
+      { row: 9, col: 3, features: ["empty"], price: 0 },
+      { row: 9, col: 4, features: ["empty"], price: 0 },
+      { row: 9, col: 5, features: ["empty"], price: 0 },
+      { row: 9, col: 6, features: ["empty"], price: 0 },
+      { row: 9, col: 7, features: ["empty"], price: 0 },
+      { row: 9, col: 8, features: ["empty"], price: 0 },
+      { row: 9, col: 9, features: ["empty"], price: 0 },
+      { row: 9, col: 11, features: ["empty"], price: 0 },
+      { row: 9, col: 12, features: ["empty"], price: 0 },
+      { row: 9, col: 13, features: ["accessible"], price: 12 },
+      { row: 10, col: 0, features: ["empty"], price: 0 },
+      { row: 10, col: 1, features: ["empty"], price: 0 },
+      { row: 10, col: 2, features: ["empty"], price: 0 },
+      { row: 10, col: 3, features: ["empty"], price: 0 },
+      { row: 10, col: 4, features: ["empty"], price: 0 },
+      { row: 10, col: 5, features: ["empty"], price: 0 },
+      { row: 10, col: 6, features: ["empty"], price: 0 },
+      { row: 10, col: 7, features: ["empty"], price: 0 },
+      { row: 10, col: 8, features: ["empty"], price: 0 },
+      { row: 10, col: 9, features: ["empty"], price: 0 },
+      { row: 10, col: 11, features: ["empty"], price: 0 },
+      { row: 10, col: 12, features: ["empty"], price: 0 },
+      { row: 11, col: 0, features: ["empty"], price: 0 },
+      { row: 11, col: 1, features: ["empty"], price: 0 },
+      { row: 11, col: 2, features: ["empty"], price: 0 },
+      { row: 11, col: 3, features: ["empty"], price: 0 },
+      { row: 11, col: 4, features: ["empty"], price: 0 },
+      { row: 11, col: 5, features: ["empty"], price: 0 },
+      { row: 11, col: 6, features: ["empty"], price: 0 },
+      { row: 11, col: 7, features: ["empty"], price: 0 },
+      { row: 11, col: 8, features: ["empty"], price: 0 },
+      { row: 11, col: 9, features: ["empty"], price: 0 },
+      { row: 11, col: 11, features: ["empty"], price: 0 },
+      { row: 11, col: 12, features: ["empty"], price: 0 },
+      { row: 12, col: 0, features: ["accessible"], price: 12 },
+      { row: 12, col: 1, features: ["accessible"], price: 12 },
+      { row: 12, col: 2, features: ["accessible"], price: 12 },
+      { row: 12, col: 10, features: ["empty"], price: 0 },
+      { row: 12, col: 11, features: ["empty"], price: 0 },
+      { row: 12, col: 12, features: ["empty"], price: 0 },
+      { row: 13, col: 0, features: ["empty"], price: 0 },
+      { row: 13, col: 1, features: ["empty"], price: 0 },
+      { row: 13, col: 2, features: ["empty"], price: 0 },
+      { row: 13, col: 3, features: ["empty"], price: 0 },
+      { row: 13, col: 4, features: ["empty"], price: 0 },
+      { row: 13, col: 5, features: ["empty"], price: 0 },
+      { row: 13, col: 6, features: ["empty"], price: 0 },
+      { row: 13, col: 7, features: ["empty"], price: 0 },
+      { row: 13, col: 8, features: ["empty"], price: 0 },
+      { row: 13, col: 9, features: ["empty"], price: 0 },
+      { row: 13, col: 10, features: ["empty"], price: 0 },
+      { row: 13, col: 11, features: ["empty"], price: 0 },
+      { row: 13, col: 12, features: ["empty"], price: 0 },
+      { row: 14, col: 0, features: ["empty"], price: 0 },
+      { row: 14, col: 1, features: ["empty"], price: 0 },
+      { row: 14, col: 2, features: ["empty"], price: 0 },
+      { row: 14, col: 3, features: ["empty"], price: 0 },
+      { row: 14, col: 4, features: ["empty"], price: 0 },
+      { row: 14, col: 5, features: ["empty"], price: 0 },
+      { row: 14, col: 6, features: ["empty"], price: 0 },
+      { row: 14, col: 7, features: ["empty"], price: 0 },
+      { row: 14, col: 8, features: ["empty"], price: 0 },
+      { row: 14, col: 9, features: ["empty"], price: 0 },
+      { row: 14, col: 10, features: ["empty"], price: 0 },
+      { row: 14, col: 11, features: ["empty"], price: 0 },
+      { row: 14, col: 12, features: ["empty"], price: 0 },
+      { row: 14, col: 13, features: ["ev"], price: 15 },
+      { row: 15, col: 12, features: ["ev"], price: 15 },
+      { row: 15, col: 13, features: ["empty"], price: 0 },
+    ],
+  },
 };
 
 // State of current instance of lot overlay
@@ -73,12 +253,23 @@ function initializeOverlay() {
     document.getElementById("selected-spots");
   ParkingState.elements.totalPrice = document.getElementById("total-price");
   ParkingState.elements.closeButton = document.getElementById("close-button");
+  ParkingState.elements.infoButton = document.getElementById("info-button");
+  ParkingState.elements.info = document.getElementById("info");
+  ParkingState.elements.legendButton = document.getElementById("legend-button");
+  ParkingState.elements.legendContainer =
+    document.getElementById("legend-container");
+  ParkingState.elements.legend = document.getElementById("legend");
   ParkingState.elements.buyButton = document.getElementById("buy-button");
 
   // Create listeners
   ParkingState.elements.parkingLot.addEventListener("click", handleSpotClick);
   ParkingState.elements.closeButton.addEventListener("click", handleCloseClick);
   ParkingState.elements.buyButton.addEventListener("click", handleBuyClick);
+  ParkingState.elements.infoButton.addEventListener("click", handleinfoClick);
+  ParkingState.elements.legendButton.addEventListener(
+    "click",
+    handleLegendClick
+  );
 }
 
 // Create grid from lot data
@@ -193,9 +384,24 @@ function showLot() {
 
       // Set Feature display text
       var featureSpan = "";
-      if (spot.features.length > 0 && !isEmptySpot) {
-        featureSpan =
-          "<span>" + spot.features.join("<br>").toUpperCase() + "</span>";
+      // if (spot.features.length > 0 && !isEmptySpot) {
+      //   featureSpan =
+      //     "<span>" + spot.features.join("<br>").toUpperCase() + "</span>";
+      // }
+
+      if (spot.features.includes("accessible")) {
+        featureSpan +=
+          '<img src="images/lot-map-accessible.svg" class="accessible-icon">';
+      }
+
+      if (spot.features.includes("ev")) {
+        featureSpan +=
+          '<img src="images/lot-map-electric.svg" class="ev-icon">';
+      }
+
+      if (spot.features.includes("covered")) {
+        featureSpan +=
+          '<img src="images/lot-map-covered.svg" class="covered-icon">';
       }
 
       // Add single spot to grid HTML
@@ -233,7 +439,7 @@ function getSpotDataById(spotId) {
 // Function to handle spot clicks
 function handleSpotClick(event) {
   var spotElement = event.target.closest(".spot");
-  if (!spotElement) {
+  if (!spotElement || ParkingState.isPanning) {
     return;
   }
 
@@ -270,6 +476,28 @@ function handleSpotClick(event) {
 
   updateSelectionAndPrice(); // Update summary
 }
+
+// Function to handle info button click
+function handleinfoClick() {
+  ParkingState.elements.info.classList.toggle("show");
+}
+
+// Function to handle legend button click
+function handleLegendClick() {
+  ParkingState.elements.legendContainer.classList.toggle("open");
+  ParkingState.elements.legend.classList.toggle("show");
+}
+
+// Function to handle clicks outside info to close it
+document.addEventListener("click", function (event) {
+  const infoText = ParkingState.elements.info;
+  const infoButton = ParkingState.elements.infoButton;
+
+  // If the click is outside the info text and not on the info button, hide the info text
+  if (!infoText.contains(event.target) && event.target !== infoButton) {
+    infoText.classList.remove("show");
+  }
+});
 
 // Function to handle close button click
 function handleCloseClick() {
@@ -351,19 +579,19 @@ function loadParkingLot(lotData) {
     boundsPadding: 0.1,
     maxZoom: 2,
     minZoom: 0.5,
+    smoothScroll: false,
     filterKey: function () {
       return true;
     },
     zoomDoubleClickSpeed: 1,
   });
 
-  // Center the lot in panzoom view
-  var container = ParkingState.elements.parkingLot.parentElement;
-  var lotRect = ParkingState.elements.parkingLot.getBoundingClientRect();
-  var containerRect = container.getBoundingClientRect();
-  var centerX = (containerRect.width - lotRect.width) / 2;
-  var centerY = (containerRect.height - lotRect.height) / 2;
-  ParkingState.panzoomObject.moveTo(centerX, centerY);
+  // Center Screen after everything loads
+  requestAnimationFrame(function () {
+  requestAnimationFrame(function () {
+    centerScreen();
+  });
+});
 
   // Event listeners for panzoom
   ParkingState.panzoomObject.on("panstart", function () {
@@ -376,6 +604,33 @@ function loadParkingLot(lotData) {
   });
 }
 
+// Center Screen to lot
+function centerScreen() {
+var container = ParkingState.elements.parkingLot.parentElement;
+var lotRect = ParkingState.elements.parkingLot.getBoundingClientRect();
+var containerRect = container.getBoundingClientRect();
+
+// Need scale zoom to fit lot vertically 
+// Scale by how many lotRects you can fit in containerRect
+// Zoom Factor is based on lotRect
+var scaleY = containerRect.height / lotRect.height;
+
+// Need to account for scaling
+var scaledLotWidth = lotRect.width * scaleY;
+var scaledLotHeight = lotRect.height * scaleY;
+
+// Calc:
+// containerWidth - lotWidth = empty space to the elft
+// Need to halve to "give away" half of the empty width to the right (to center) 
+var finalX = (containerRect.width - scaledLotWidth) / 2;
+var finalY = (containerRect.height - scaledLotHeight) / 2;
+
+// Absolute move
+ParkingState.panzoomObject.moveTo(finalX, finalY);
+// Focal points, Absolute scale
+ParkingState.panzoomObject.zoomAbs(finalX, finalY, scaleY);
+}
+
 function displayLotByName(lotName) {
   const lotData = parkingLots[lotName];
   if (lotData) {
@@ -386,4 +641,3 @@ function displayLotByName(lotName) {
 }
 
 initializeOverlay();
-
