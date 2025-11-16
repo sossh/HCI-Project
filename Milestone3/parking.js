@@ -36,69 +36,40 @@ function renderLeaflet() {
 }
 
 function buildAreas() {
-  // Uncomment when all implemented
-  // const filters = getFilters(); // Get all applied filters set on the ui
-  // const filteredLots = getFilteredParkingLots(filters)
 
-  filters = [];
-  const filteredLots = getFilteredParkingLots(filters);
+    // Uncomment when all implemented
+    // const filters = getFilters(); // Get all applied filters set on the ui
+    // const filteredLots = getFilteredParkingLots(filters)
 
-  for (const parkingLot of filteredLots) {
-    coords = data[parkingLot]["area"];
     drawLots(publicLots, '#3388ff');
     drawLots(staffLots, '#ff3388');
     drawLots(studentLot, '#ffaa33');
     
 }
 
-function drawLots(nameLot, color){
+function drawLots(lotGroup, color) {
+  const lotNames = Object.keys(lotGroup);
 
-    filters = []
-    const filteredLots = getFilteredParkingLots(filters, nameLot)
+  for (const lotName of lotNames) {
+    const coords = lotGroup[lotName].area;
 
-    const campusPolygon = L.polygon(coords, {
-      color: "blue", // outline color
-      weight: 3, // outline thickness
-      fillColor: "#3388ff", // inside color
-      fillOpacity: 0.4, // transparency
+    const polygon = L.polygon(coords, {
+      color: "grey",
+      weight: 3,
+      fillColor: color,
+      fillOpacity: 0.4,
     }).addTo(map);
 
-    // Add text label (always visible)
-    campusPolygon.bindTooltip(data[parkingLot]["map_display_name"], {
+    polygon.bindTooltip(lotGroup[lotName].map_display_name, {
       permanent: true,
       direction: "center",
-      className: "polygon-label", // optional custom style
+      className: "polygon-label",
     });
 
-    // Create a event listener on each campusPolygon, call onLotClick function
-    campusPolygon.on("click", () => {
-      onLotClick(campusPolygon, parkingLot);
-    });
-    campusPolygon.on("mouseover", () => onHover(campusPolygon));
-    campusPolygon.on("mouseout", () => onOut(campusPolygon));
+    polygon.on("click", () => onLotClick(polygon, lotName));
+    polygon.on("mouseover", () => onHover(polygon));
+    polygon.on("mouseout", () => onOut(polygon));
   }
-    for(const parkingLot of filteredLots) {
-        let coords = nameLot[parkingLot]["area"]
-
-        const campusPolygon = L.polygon(coords, {
-            color: 'grey',         // outline color
-            weight: 3,             // outline thickness
-            fillColor: color,  // inside color
-            fillOpacity: 0.4       // transparency
-        }).addTo(map);
-
-        // Add text label (always visible)
-        campusPolygon.bindTooltip(nameLot[parkingLot]["map_display_name"], {
-            permanent: true,
-            direction: "center",
-            className: "polygon-label" // optional custom style
-        });
-
-        // Create a event listener on each campusPolygon, call onLotClick function
-        campusPolygon.on('click', () => onLotClick(campusPolygon));
-        campusPolygon.on('mouseover', () => onHover(campusPolygon));
-        campusPolygon.on('mouseout', () => onOut(campusPolygon));
-    }
 }
 
 // Return all parking lots that have at least one spot where the given filters are true

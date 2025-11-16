@@ -214,6 +214,7 @@ h2 {
 /* ========================================= */
 .map-area {
   flex: 1;
+  min-height: 550px;
   position: relative;
   background-color: var(--card-bg);
   margin: 1px 20px;
