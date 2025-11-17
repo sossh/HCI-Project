@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parking Finder Confirmation</title>
+    <link rel="stylesheet" href="css/loginPage.css" />
+  </head>
+  <body>
+    <header class="paymentHeader">
+      Parking Finder
+    </header>
+
+    <div id="confirmation">
+      <div class="confirmIconWrapper">
+        <div class="confirmIcon">✓</div>
+      </div>
+
+      <h2>Booking confirmed</h2>
+      <h3>Your parking spot has been reserved and payment was processed.</h3>
+
+      <div class="summary">
+        <h3>Reservation Summary</h3>
+
+        <div class="formText summaryCard">
+          <h3 class="summaryTitle">Reservation details</h3>
+
+          <div class="formTextRow">
+            <span>Lot</span>
+            <span id="confirmLot">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Parking spot</span>
+            <span id="confirmSpot">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Date</span>
+            <span id="confirmDate">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Time</span>
+            <span id="confirmTime">–</span>
+          </div>
+
+          <div class="formTextRow summaryTotal">
+            <span>Paid</span>
+            <span id="confirmPrice">$0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="formTextRow">
+        <button id="backToMapBtn" class="signInBtn">Back to map</button>
+      </div>
+    </div>
+
+    <script src="js/confirmationPage.js"></script>
+  </body>
+</html>

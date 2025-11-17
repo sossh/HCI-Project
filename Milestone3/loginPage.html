@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Parking Finder Login</title>
+        <link rel="stylesheet" href="css/loginPage.css"> 
+    </head>
+    <body> 
+		<header class="loginHeader">Parking Finder</header>
+    	<!---login--->
+		<div class="loginWrapper">
+			<div id="login">
+				<h2>Sign In</h2>
+				<h3>Sign in to start finding a parking spot.</h3>
+				<form id="loginForm">
+					<div class="formText">
+						<label for="username">Username</label>
+						<input id="username" type="text" class="inputText" placeholder="Username" required>
+					</div>
+					<div class="formText">
+						<label for="password">Password</label>
+						<input id="password" type="text" class="inputText" placeholder="password" required>
+					</div>
+					<button type="submit" id="signInBtn">Sign In</button>
+				</form>
+				<button id="guestBtn">Continue as Guest</button>
+				<button id="signUpOpenBtn">Sign Up</button>
+			</div>
+		</div>
+		<!---Pop up for sign up--->
+		<div class="signUpWrapper">
+			<div id="signUpPopUp">
+				<button id="closeBtn" class="close" type="button">x</button>
+				<h3>Create Account</h3>
+				<form id="signUpForm">
+					<div class="formText">
+						<label for="username">Username</label>
+						<input id="username" type="text" class="inputText" placeholder="Username" required>
+					</div>
+					<div class="formText">
+						<label for="password">Password</label>
+						<input id="password" type="text" class="inputText" placeholder="password" required>
+					</div>
+				</form>
+				<button id="cancelBtn" type="button">cancel</button>
+				<button id="signUpBtn">Sign Up</button>
+			</div>
+		</div>	
+		<script src="js/loginPage.js"></script>
+    </body>
+</html>
