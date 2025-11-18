@@ -1,17 +1,54 @@
-function onLotClick(campusLot, lotName) {
-  map.once('moveend', function() {
-    displayLotByName(lotName);
-  });
-  const center = campusLot.getBounds().getCenter();
-  map.flyTo(center, 18, { duration: 0.75 });
+//global varable for lot names
+window.nameLot = {};
+
+function onLotClick(campusLot, lotKey) {
+    const lot = window.nameLot[lotKey];
+
+    // If lot is dimmed, ignore the click
+    if (campusLot._clickDisabled) {
+        console.log("Click ignored (lot dimmed):", lotKey);
+        return;
+    }
+
+    console.log("Lot clicked:", lotKey);
+
+    // Update the dropdown to show this lot
+    const dropdown = document.getElementById("lot-selector");
+
+    // Find the index of this lot in the visible list
+    const index = window.visibleLots.indexOf(lotKey);
+    if (index !== -1) {
+        dropdown.selectedIndex = index;
+    }
+
+    // Fly to the lot and open the panel
+    map.once('moveend', function () {
+        const original = window.nameLot[lotKey].originalName;
+        displayLotByName(original);
+    });
+
+    const center = campusLot.getBounds().getCenter();
+    map.flyTo(center, 18, { duration: 0.75 });
 }
 
 function onHover(campusLot) {
-  campusLot.setStyle({ weight: 4, fillOpacity: 1 });
+    // If filters disabled this lot: ignore hover
+    if (campusLot._hoverDisabled) return;
+
+    campusLot.setStyle({ 
+        weight: 4, 
+        fillOpacity: 1 
+    });
 }
 
 function onOut(campusLot) {
-  campusLot.setStyle({ weight: 3, fillOpacity: 0.4 });
+    // If filters disabled this lot: ignore out
+    if (campusLot._hoverDisabled) return;
+
+    campusLot.setStyle({ 
+        weight: 3, 
+        fillOpacity: 0.4 
+    });
 }
 
 function renderLeaflet() {
@@ -48,28 +85,48 @@ function buildAreas() {
 }
 
 function drawLots(lotGroup, color) {
-  const lotNames = Object.keys(lotGroup);
+    const lotNames = Object.keys(lotGroup);
 
-  for (const lotName of lotNames) {
-    const coords = lotGroup[lotName].area;
+    for (const lotName of lotNames) {
+        const lot = lotGroup[lotName];
+        const coords = lot.area;
 
-    const polygon = L.polygon(coords, {
-      color: "grey",
-      weight: 3,
-      fillColor: color,
-      fillOpacity: 0.4,
-    }).addTo(map);
+        // AUTO-DETECT CATEGORY
+        let category = "public";
+        if (lot.isStaff) category = "staff";
+        if (lot.isStudent) category = "student";
+        if (lot.isFaculty) category = "faculty";
+        if (lot.isVisitor) category = "public";
 
-    polygon.bindTooltip(lotGroup[lotName].map_display_name, {
-      permanent: true,
-      direction: "center",
-      className: "polygon-label",
-    });
+        const prefixedName = `${category}-${lotName}`;
 
-    polygon.on("click", () => onLotClick(polygon, lotName));
-    polygon.on("mouseover", () => onHover(polygon));
-    polygon.on("mouseout", () => onOut(polygon));
-  }
+        // Draw the polygon
+        const polygon = L.polygon(coords, {
+            color: "grey",
+            weight: 3,
+            fillColor: color,
+            fillOpacity: 0.4,
+        }).addTo(map);
+
+        polygon.bindTooltip(lot.map_display_name, {
+            permanent: true,
+            direction: "center",
+            className: "polygon-label",
+        });
+
+        polygon.on("click", () => onLotClick(polygon, prefixedName));
+        polygon.on("mouseover", () => onHover(polygon));
+        polygon.on("mouseout", () => onOut(polygon));
+
+        window.nameLot[prefixedName] = {
+            ...lot,
+            polygon: polygon,
+            category: category,
+            originalName: lotName
+        };
+
+        polygon.options.lotName = prefixedName;
+    }
 }
 
 // Return all parking lots that have at least one spot where the given filters are true
@@ -252,7 +309,7 @@ const publicLots = {
         isFaculty: false,
         isStaff: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -520,7 +577,7 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -699,7 +756,7 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 

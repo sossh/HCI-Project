@@ -2,8 +2,8 @@
 /*               COLOR CONSTANTS             */
 /* ========================================= */
 :root {
-  --primary: #341a04;
-  --secondary: #dc9a27;
+  --primary: #1b4571;
+  --secondary: #c4d2d6;
   --important: #4562a6;
   --card-bg: #ffffff;
   --shadow-heavy: rgba(0, 0, 0, 1);
@@ -98,7 +98,7 @@ body {
   position: relative;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: none;
+  background: var(--secondary);
 }
 
 body::before {
@@ -108,10 +108,6 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-
-  background-image: url("../images/background2.png"); /* your file path */
-  background-size: cover;
-  background-repeat: no-repeat;
 
   filter: brightness(1.2) blur(2px); /* dim + soften */
   z-index: -1; /* behind everything */
