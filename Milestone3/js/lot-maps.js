@@ -45,7 +45,7 @@ var parkingLots = {
     cols: 14,
     defaultSpotPrice: 12,
     specialSpots: [
-      { row: 0, col: 0, features: ["accessible"], price: 12 },
+      { row: 0, col: 0, status: "occupied", features: ["accessible"], price: 12 },
       { row: 0, col: 1, features: ["accessible"], price: 12 },
       { row: 0, col: 12, features: ["ev"], price: 15 },
       { row: 0, col: 13, features: ["empty"], price: 0 },
@@ -586,6 +586,8 @@ function loadParkingLot(lotData) {
     zoomDoubleClickSpeed: 1,
   });
 
+  handleLegendClick();
+
   // Center Screen after everything loads
   requestAnimationFrame(function () {
   requestAnimationFrame(function () {
@@ -614,6 +616,7 @@ var containerRect = container.getBoundingClientRect();
 // Scale by how many lotRects you can fit in containerRect
 // Zoom Factor is based on lotRect
 var scaleY = containerRect.height / lotRect.height;
+scaleY = scaleY - 0.1;
 
 // Need to account for scaling
 var scaledLotWidth = lotRect.width * scaleY;
