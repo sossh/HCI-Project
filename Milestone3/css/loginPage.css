@@ -1,6 +1,6 @@
 
 header {
-  background-color: #a00034; /* wine red */
+  background-color: #1b4571; 
   color: white;
   text-align: center;
   padding: 1px;
@@ -11,19 +11,19 @@ header {
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #dff0f3;
+  background-color: #c4d2d6;
 }
 
 h2 {
   margin-top: 0;
-  color: #a00034;
+  color: #1b4571;
 }
 
 .loginHeader {
   all: unset;
   display: block;         
   background-color: none; 
-  color: #a00034;
+  color: #1b4571;
   text-align: center;     
   padding: 5px; 
   font-size: 40px;        
@@ -87,13 +87,13 @@ h2 {
 }
 
 #signInBtn {
-  background-color: #a00034;
-  color: #dff0f3;
+  background-color: #1b4571;
+  color: white;
 }
 
 #guestBtn, #signUpOpenBtn {
-  background-color: #dff0f3;
-  color: #a00034;
+  background-color: #c4d2d6;
+  color: #1b4571;
 }
 
 .signUpWrapper {
@@ -161,13 +161,13 @@ h2 {
 
 
 #signUpBtn {
-  background-color: #a00034;
-  color: #dff0f3;
+  background-color: #1b4571;
+  color: white;
 }
 
 #cancelBtn, #closeBtn {
-  background-color: #dff0f3;
-  color: #a00034;
+  background-color: #c4d2d6;
+  color: #1b4571;
 }
 
 /*Payment page*/
@@ -248,13 +248,13 @@ h2 {
 }
 
 .guestBtn {
-  background-color: #dff0f3;
-  color: #a00034;
+  background-color: #c4d2d6;
+  color: #1b4571;
 }
 
 .signInBtn {
-  background-color: #a00034;
-  color: #dff0f3;
+  background-color: #1b4571;
+  color: white;
 }
 
 #paymentForm .formTextRow:last-of-type {
@@ -276,7 +276,7 @@ h2 {
 #confirmation h2 {
   margin-top: 8px;
   margin-bottom: 4px;
-  color: #a00034;
+  color: #1b4571;
 }
 
 #confirmation h3 {
