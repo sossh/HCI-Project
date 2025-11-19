@@ -460,7 +460,7 @@ const publicLots = {
         isStudent: false,
         isFaculty: false,
         isStaff: false,
-        isCovered: false,
+        isCovered: true,
         isElectric: false,
         isAccessible: true
     },

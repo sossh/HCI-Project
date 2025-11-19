@@ -25,7 +25,6 @@ const filterIcons = {
 };
 
 // ******** LOT SELECTOR SETUP ********
-const lots = Array.from(lotDropdown.options).map(opt => opt.text);
 let currentLotIndex = lotDropdown.selectedIndex;
 
 // Dropdown listener for lots
@@ -45,24 +44,39 @@ lotDropdown.addEventListener("change", () => {
 
 // Prev button
 prevLotBtn.addEventListener("click", () => {
+    if (window.visibleLots.length === 0) return;
+
     currentLotIndex--;
-    if (currentLotIndex < 0) currentLotIndex = lots.length - 1;
+    if (currentLotIndex < 0) currentLotIndex = window.visibleLots.length - 1;
 
-    lotDropdown.selectedIndex = currentLotIndex;
+    const lotKey = window.visibleLots[currentLotIndex];
+    lotDropdown.value = lotKey;
 
-    console.log("Prev clicked Now selected:", lotDropdown.value);
-    onLotSelected(lotDropdown.value);
+    console.log("Prev clicked, now:", lotKey);
+    onLotSelected(lotKey);
+
+    const lot = window.nameLot[lotKey];
+    const center = lot.polygon.getBounds().getCenter();
+    map.flyTo(center, 18, { duration: 0.75 });
 });
 
 // Next button
 nextLotBtn.addEventListener("click", () => {
+    if (window.visibleLots.length === 0) return;
+
     currentLotIndex++;
-    if (currentLotIndex >= lots.length) currentLotIndex = 0;
+    if (currentLotIndex >= window.visibleLots.length)
+        currentLotIndex = 0;
 
-    lotDropdown.selectedIndex = currentLotIndex;
+    const lotKey = window.visibleLots[currentLotIndex];
+    lotDropdown.value = lotKey;
 
-    console.log("Next clicked Now selected:", lotDropdown.value);
-    onLotSelected(lotDropdown.value);
+    console.log("Next clicked, now:", lotKey);
+    onLotSelected(lotKey);
+
+    const lot = window.nameLot[lotKey];
+    const center = lot.polygon.getBounds().getCenter();
+    map.flyTo(center, 18, { duration: 0.75 });
 });
 
 // Placeholder for backend teammates
@@ -212,4 +226,7 @@ function updateLotDropdown() {
         const center = first.polygon.getBounds().getCenter();
         map.flyTo(center, 18, { duration: 0.75 });
     }
+
+    //keep next/prev in sync
+    currentLotIndex = dropdown.selectedIndex;
 }
