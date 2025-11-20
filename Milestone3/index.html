@@ -284,11 +284,18 @@
 
       <!-- INITIALIZE MAP -->
       <script>
-        var map = L.map("map-frame").setView(
+
+
+        var bounds = L.latLngBounds(
+          [49.79786204559859, -97.16118274293143], 
+          [49.81985433735486, -97.11819151428607]
+        );
+
+        var map = L.map("map-frame", {maxBounds: bounds, minZoom: 15}).setView(
           [49.808890627609614, -97.13210208927495],
           16
         );
-        
+
         renderLeaflet();
         buildAreas();
       </script>
