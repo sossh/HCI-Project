@@ -5,6 +5,7 @@
 window.visibleLots = [];      // lots that pass filters
 let currentLotIndex = 0;      // used for next/prev navigation
 window.buildingCircle = null;
+window.buildingMarker = null;
 window.currentBuilding = null;
 window.currentDistance = 500;   // default
 
@@ -30,12 +31,9 @@ const activeFiltersContainer = document.getElementById("active-filters");
 // ======================================================
 
 const filterIcons = {
-    faculty: "images/faculty.png",
-    student: "images/student.png",
-    visitor: "images/visitor.png",
-    covered: "images/covered.png",
-    electric: "images/electric.png",
-    accessible: "images/accessible.png"
+    covered: "images/lot-map-covered.svg",
+    electric: "images/lot-map-electric.svg",
+    accessible: "images/lot-map-accessible.svg"
 };
 
 // ======================================================
@@ -146,7 +144,7 @@ document.getElementById("traffic-range").addEventListener("input", (e) => {
 buildingDropdown.addEventListener("change", () => {
     const selected = buildingDropdown.value;
 
-    // If user selected NONE → disable distance filtering
+    // If user selected NONE: disable distance filtering
     if (selected === "none") {
         window.currentBuilding = null;
 
@@ -176,12 +174,26 @@ function drawBuildingRadius() {
         map.removeLayer(window.buildingCircle);
     }
 
+    // Remove old marker
+    if (window.buildingMarker) {
+        map.removeLayer(window.buildingMarker);
+    }
+
     // Draw new circle
     window.buildingCircle = L.circle(coords, {
         radius: window.currentDistance,
         color: "#0077ff",
         fillColor: "#66aaff",
-        fillOpacity: 0.15
+        fillOpacity: 0.15,
+        interactive: false
+    }).addTo(map);
+
+    // Push circle behind lots
+    window.buildingCircle.bringToBack();
+
+    // Add building center marker
+    window.buildingMarker = L.marker(coords, {
+        title: window.currentBuilding
     }).addTo(map);
 
     // Focus on building
@@ -227,6 +239,25 @@ updateActiveFiltersVisibility(); // Hide at start
 // ===================== FILTERING ======================
 // ======================================================
 
+function lotMatchesPermit(lot, user) {
+    if (!user) return false;
+
+    switch (user.permit) {
+        case "student":
+            return lot.isStudent === true || lot.isVisitor === true;
+
+        case "staff":
+        case "faculty":
+            return lot.isStaff === true || lot.isFaculty === true || lot.isVisitor === true;
+
+        case "visitor":
+            return lot.isVisitor === true;
+
+        default:
+            return false;
+    }
+}
+
 function applyFilters() {
     console.log("Applying filters...");
 
@@ -240,22 +271,34 @@ function applyFilters() {
         const lot = window.nameLot[lotKey];
         let matches = true;
 
-        // Spot feature filters
+        // -----------------------------
+        // make match before logged in so that the polygons load regardless
+        // -----------------------------
+        let matchesPermit = true;
+
+        if (window.currentUser) {
+            matchesPermit = lotMatchesPermit(lot, window.currentUser);
+        }
+
+        if (!matchesPermit) {
+            matches = false;
+        }
+
+        // ---- Spot Feature Filters ----
         if (wantsCovered && !lot.isCovered) matches = false;
         if (wantsElectric && !lot.isElectric) matches = false;
         if (wantsAccess && !lot.isAccessible) matches = false;
 
-        // -------- NEW: Distance Filter --------
-        if (window.currentBuilding) {
+        // ---- Distance filter ----
+        if (window.currentBuilding && window.currentBuilding !== "none") {
             const buildingCoords = window.buildingLocations[window.currentBuilding];
             const lotCenter = lot.polygon.getBounds().getCenter();
             const distance = map.distance(buildingCoords, [lotCenter.lat, lotCenter.lng]);
 
-            if (distance > window.currentDistance) {
-                matches = false;
-            }
+            if (distance > window.currentDistance) matches = false;
         }
 
+        // === APPLY VISIBILITY ===
         if (matches) {
             window.visibleLots.push(lotKey);
             lot.polygon.setStyle({ opacity: 1, fillOpacity: 0.5 });
@@ -305,3 +348,14 @@ function updateLotDropdown() {
 
     currentLotIndex = dropdown.selectedIndex;
 }
+
+// ======================================================
+// =============== MAP LEGEND TOGGLE ====================
+// ======================================================
+document.getElementById("map-legend-button").addEventListener("click", () => {
+    const box = document.getElementById("map-legend-container");
+    const legend = document.getElementById("map-legend");
+
+    box.classList.toggle("open");
+    legend.classList.toggle("show");
+});

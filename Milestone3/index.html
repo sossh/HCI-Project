@@ -4,8 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parking Finder Prototype</title>
+
+    <!-- MAIN APP STYLES -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/lot-map.css" />
+
+    <!-- NEW: Login + Confirmation pages (OPTION A uses them as hidden sections) -->
+    <!-- These styles define how the login UI looks when JS shows it -->
+    <link rel="stylesheet" href="css/loginPage.css">
+    <link rel="stylesheet" href="css/confirmPage.css">
+
+    <!-- LEAFLET STYLES -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -15,245 +24,274 @@
   </head>
 
   <body>
-    <div class="top-row">
-      <header>
-        <h1>UM Park</h1>
-      </header>
+    <!-- ===== LOGIN PAGE (initial screen) ===== -->
+    <div id="login-page" class="login-page-container">
+      <h2>Welcome to UM Park</h2>
+      <p class="login-subtitle">Log in to find a parking spot</p>
 
-      <div class="lot-bar">
-        <button class="lot-btn" id="prev-lot">⟨ Prev</button>
-        <div class="lot-dropdown-container">
-          <select id="lot-selector" class="lot-dropdown">
-            <option>Lot A - Engineering</option>
-            <option>Lot B - Agriculture</option>
-            <option>Lot C - Science</option>
-            <option>Lot D - Admin</option>
-            <option>Lot E - Stadium</option>
-          </select>
+      <div class="login-box">
+        <label>Email</label>
+        <input type="text" id="login-email">
 
-          <img
-            src="images/arrowDropdown.png"
-            class="lot-arrow"
-            alt="Dropdown Arrow"
-          />
-        </div>
-        <button class="lot-btn" id="next-lot">Next ⟩</button>
+        <label>Password</label>
+        <input type="password" id="login-password">
+
+        <button id="login-submit">Log In</button>
+
+        <button id="guest-login" class="guest-btn">Continue as Guest</button>
       </div>
     </div>
 
-    <!-- Left Filter Sidebar -->
-    <div class="container">
-      <div class="sidebar">
-        <!-- Building Selector Card -->
-        <aside class="building-selector">
-          <h2>Select Building</h2>
+    <!-- ===== REST OF YOUR APP (hidden initially) ===== -->
+    <div id="app-container" style="display:none;">
 
-          <label for="building-list">Building:</label>
-          <select id="building-list">
-              <option value="none">None</option>
-              <!-- dynamically populated buildings -->
-          </select>
+      <!-- EVERYTHING BELOW THIS CAN BE HIDDEN BY loginPage.js UNTIL USER LOGS IN -->
+      <div class="top-row">
+        <header>
+          <h1>UM Park</h1>
+        </header>
 
-          <hr />
+        <!-- LOT NAVIGATION BAR -->
+        <div class="lot-bar">
+          <button class="lot-btn" id="prev-lot">⟨ Prev</button>
 
-          <label for="distance-range">Distance (m):</label>
-          <input
-            type="range"
-            id="distance-range"
-            min="0"
-            max="500"
-            value="500"
-          />
-          <span id="distance-value">500m</span>
-        </aside>
+          <div class="lot-dropdown-container">
+            <select id="lot-selector" class="lot-dropdown">
+              <!-- DEFAULT LOTS — replaced dynamically later -->
+              <option>Lot A - Engineering</option>
+              <option>Lot B - Agriculture</option>
+              <option>Lot C - Science</option>
+              <option>Lot D - Admin</option>
+              <option>Lot E - Stadium</option>
+            </select>
 
-        <!-- Filters Card -->
-        <aside class="filters">
-          <h2>Filters</h2>
+            <img src="images/arrowDropdown.png" class="lot-arrow" alt="Dropdown Arrow"/>
+          </div>
 
-          <div class="scrollable">
-            <h3>Permit Type</h3>
+          <button class="lot-btn" id="next-lot">Next ⟩</button>
+        </div>
+      </div>
 
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="faculty" />
-                Faculty
-              </span>
-              <img src="images/faculty.png" alt="Faculty Icon" class="icon" />
-            </label>
 
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="student" />
-                Student
-              </span>
-              <img src="images/student.png" alt="Student Icon" class="icon" />
-            </label>
+      <!-- MAIN UI WRAPPER (Hidden when login page shows) -->
+      <div class="container">
 
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="visitor" />
-                Visitor
-              </span>
-              <img src="images/visitor.png" alt="Visitor Icon" class="icon" />
-            </label>
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+
+          <!-- FILTERS -->
+          <aside class="filters">
+            <h2>Filters</h2>
+
+            <div class="scrollable">
+
+              <!-- SPOT FEATURES -->
+              <h3>Spot Features</h3>
+
+              <label>
+                <span class="label-left">
+                  <input type="checkbox" id="accessible" /> Accessible
+                </span>
+                <img src="images/lot-map-accessible.svg" class="icon" />
+              </label>
+
+              <label>
+                <span class="label-left">
+                  <input type="checkbox" id="electric" /> Electric
+                </span>
+                <img src="images/lot-map-electric.svg" class="icon" />
+              </label>
+
+              <label>
+                <span class="label-left">
+                  <input type="checkbox" id="covered" /> Covered
+                </span>
+                <img src="images/lot-map-covered.svg" class="icon" />
+              </label>
+
+            </div>
 
             <hr />
 
-            <h3>Spot Features</h3>
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="covered" />
-                Covered
-              </span>
-              <img src="images/covered.png" alt="Bike Icon" class="icon" />
-            </label>
+            <!-- TRAFFIC SLIDER -->
+            <h3>Traffic:</h3>
+            <input type="range" id="traffic-range" min="0" max="100" value="25" />
+            <span id="traffic-value">25</span>
+          </aside>
 
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="electric" />
-                Electric
-              </span>
-              <img src="images/electric.png" alt="Electric Icon" class="icon" />
-            </label>
+          <!-- BUILDING SELECTOR -->
+          <aside class="building-selector">
+            <h2>Select Building</h2>
 
-            <label>
-              <span class="label-left">
-                <input type="checkbox" id="accessible" />
-                Accessible
-              </span>
-              <img
-                src="images/accessible.png"
-                alt="Accessible Icon"
-                class="icon"
-              />
-            </label>
-          </div>
+            <label for="building-list">Building:</label>
 
-          <hr />
+            <!-- NOW DYNAMICALLY POPULATED FROM buildings.js -->
+            <!-- Includes "None" by default -->
+            <select id="building-list">
+                <option value="none">None</option>
+            </select>
 
-          <h3>Traffic:</h3>
-          <input type="range" id="traffic-range" min="0" max="100" value="25" />
-          <br />
-          <span id="traffic-value">25</span>
-        </aside>
+            <hr />
+
+            <label for="distance-range">Distance (m):</label>
+            <input type="range" id="distance-range" min="0" max="500" value="500"/>
+            <span id="distance-value">500m</span>
+          </aside>
+        </div>
+
+
+        <!-- MAP AREA -->
+        <div class="right-panel">
+          <main class="map-area">
+            <div id="map-frame"></div>
+
+            <!-- Map Legend -->
+            <div id="map-legend-container" class="open">
+              <button id="map-legend-button">
+                Legend <span class="arrow">^</span>
+              </button>
+
+              <div id="map-legend" class="show">
+                <ul>
+                  <li>
+                    <span class="map-legend-color" style="background:#3388ff;"></span>
+                    Public Parking
+                  </li>
+
+                  <li>
+                    <span class="map-legend-color" style="background:#ff3388;"></span>
+                    Staff / Faculty Parking
+                  </li>
+
+                  <li>
+                    <span class="map-legend-color" style="background:#ffaa33;"></span>
+                    Student Parking
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="active-filters" id="active-filters">
+              <!-- JS injects icons here -->
+            </div>
+          </main>
+        </div>
       </div>
 
-      <!-- Right side: lot bar above map -->
-      <div class="right-panel">
-        <main class="map-area">
-          <div id="map-frame"></div>
 
-          <div class="active-filters" id="active-filters">
-            <!-- Icons will be inserted here via JS -->
-          </div>
-        </main>
-      </div>
-    </div>
-    <!-- Lot Maps Overlay -->
-    <div id="parking-overlay-container">
-      <div id="top-bar">
-        <h1 id="lot-name">Parking Lot</h1>
-        <div class="top-bar-right">
-          <div class="info-container">
-            <button id="info-button">?</button>
-            <div id="info" class="instructions show">
-              <ul>
-                <li>Click and drag to pan. Mouse wheel to zoom.</li>
-                <li>Click spots to select.</li>
-                <li>Only one spot can be selected at a time.</li>
-              </ul>
+
+      <!-- LOT OVERLAY WINDOW -->
+      <div id="parking-overlay-container">
+
+        <div id="top-bar">
+          <h1 id="lot-name">Parking Lot</h1>
+
+          <div class="top-bar-right">
+
+            <div class="info-container">
+              <button id="info-button">?</button>
+              <div id="info" class="instructions show">
+                <ul>
+                  <li>Click and drag to pan. Mouse wheel to zoom.</li>
+                  <li>Click spots to select.</li>
+                  <li>Only one spot can be selected at a time.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="close-button-container">
+              <button id="close-button">&times;</button>
             </div>
           </div>
-          <div class="close-button-container">
-            <button id="close-button">&times;</button>
+        </div>
+
+        <!-- LOT VIEW -->
+        <div id="lot-view">
+          <div id="parking-lot"></div>
+
+          <!-- LEGEND -->
+          <div id="legend-container">
+            <div id="legend">
+              <ul>
+                <li><span class="spot"></span> Available</li>
+                <li><span class="spot selected"></span> Selected</li>
+                <li><span class="spot occupied"></span> Occupied</li>
+
+                <li>
+                  <span class="spot accessible">
+                    <img src="./images/lot-map-accessible.svg" class="accessible-icon"/>
+                  </span>
+                  Accessible
+                </li>
+
+                <li>
+                  <span class="spot ev">
+                    <img src="./images/lot-map-electric.svg" class="ev-icon"/>
+                  </span>
+                  EV Charging
+                </li>
+
+                <li>
+                  <span class="spot covered">
+                    <img src="./images/lot-map-covered.svg" class="covered-icon"/>
+                  </span>
+                  Covered
+                </li>
+              </ul>
+            </div>
+
+            <button id="legend-button">
+              Legend <span class="arrow">^</span>
+            </button>
           </div>
         </div>
-      </div>
 
-      <div id="lot-view">
-        <div id="parking-lot"></div>
-        <div id="legend-container">
-          <div id="legend">
-            <ul>
-              <li><span class="spot"></span> Available</li>
-              <li><span class="spot selected"></span> Selected</li>
-              <li><span class="spot occupied"></span> Occupied</li>
-              <li>
-                <span class="spot accessible">
-                  <img
-                    src="./images/lot-map-accessible.svg"
-                    class="accessible-icon"
-                  />
-                </span>
-                Accessible
-              </li>
-              <li>
-                <span class="spot ev">
-                  <img src="./images/lot-map-electric.svg" class="ev-icon" />
-                </span>
-                EV Charging
-              </li>
-              <li>
-                <span class="spot covered">
-                  <img
-                    src="./images/lot-map-covered.svg"
-                    class="covered-icon"
-                  />
-                </span>
-                Covered
-              </li>
-            </ul>
+        <!-- PURCHASE BAR -->
+        <div id="bottom-bar">
+          <div id="bottom-information">
+            <span>Spot Selected: <strong id="selected-spots">0</strong></span>
+            <span>Total Price: <strong id="total-price">$0.00</strong></span>
+            <span>Available Spots: <strong id="total-spots">0</strong></span>
           </div>
-
-          <button id="legend-button">
-            Legend <span class="arrow">^</span>
-          </button>
+          <button id="buy-button">Buy Ticket</button>
         </div>
       </div>
 
-      <div id="bottom-bar">
-        <div id="bottom-information">
-          <span>
-            Spot Selected:
-            <strong id="selected-spots">0</strong>
-          </span>
-          <span>
-            Total Price:
-            <strong id="total-price">$0.00</strong>
-          </span>
-          <span>
-            Available Spots:
-            <strong id="total-spots">0</strong>
-          </span>
-        </div>
-        <button id="buy-button">Buy Ticket</button>
-      </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
-    <script src="js/lot-maps.js"></script>
-    <script src="parking.js"></script>
-    <script src="js/buildings.js"></script>
-    <script src="js/script.js"></script>
-    <script src="leafLet.js"></script>
+      <!-- LOGIN + CONFIRMATION JS -->
+       <script src="js/users.js"></script>
+      <script src="js/loginPage.js" defer></script>
+      <script src="js/confirmPage.js" defer></script>
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+      <!-- MAP + APP LOGIC -->
+      <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
+      <script src="js/lot-maps.js"></script>
+      <script src="parking.js"></script>
 
-    <script>
-      var map = L.map("map-frame").setView(
-        [49.808890627609614, -97.13210208927495],
-        16
-      );
-      
-      renderLeaflet();
-      buildAreas();
-      applyFilters();
-    </script>
+      <!-- DYNAMIC BUILDINGS (loaded before script.js) -->
+      <script src="js/buildings.js"></script>
+
+      <!-- MAIN SCRIPT (filters, dropdown, radius logic, etc.) -->
+      <script src="js/script.js"></script>
+      <script src="leafLet.js"></script>
+
+      <!-- LEAFLET JAVASCRIPT -->
+      <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+      ></script>
+
+      <!-- INITIALIZE MAP -->
+      <script>
+        var map = L.map("map-frame").setView(
+          [49.808890627609614, -97.13210208927495],
+          16
+        );
+        
+        renderLeaflet();
+        buildAreas();
+      </script>
+    </div> <!-- end of app-container -->
   </body>
 </html>
