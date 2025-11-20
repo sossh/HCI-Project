@@ -1,7 +1,12 @@
       
 function onLotClick(campusLot) {
     const center = campusLot.getBounds().getCenter();
-    map.flyTo(center, 18, {duration: 0.75 });
+
+    //fixes map shake when already on same lot clicked
+    if(map.getCenter().lat.toFixed(4) != center.lat.toFixed(4) 
+        && map.getCenter().lng.toFixed(4) != center.lng.toFixed(4)){
+            map.flyTo(center, 18, {duration: 0.75 });
+    }
 }
 
 function onHover(campusLot){
