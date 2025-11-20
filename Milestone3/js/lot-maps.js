@@ -362,6 +362,7 @@ function showLot() {
       // Get classes for this spot
       var classList = "spot";
       var spotIdString = spot.id;
+      var spotprice = "$"+spot.price;
       var isEmptySpot = false;
 
       if (spot.status === "occupied") {
@@ -377,9 +378,10 @@ function showLot() {
         }
       }
 
+
       // No text for empty spots
       if (isEmptySpot) {
-        spotIdString = "";
+        spotprice = "";
       }
 
       // Set Feature display text
@@ -413,7 +415,7 @@ function showLot() {
         spot.id +
         '"' +
         '">' +
-        spotIdString +
+        spotprice +
         featureSpan +
         "</div>";
     }
@@ -506,9 +508,12 @@ function handleCloseClick() {
 
 // Function to handle buy button click
 function handleBuyClick() {
-  loadParkingLot(lotB);
-  const selectedSpots = ParkingState.selectedSpots;
-  // TODO: Return selected spot data to main app
+  if(ParkingState.selectedSpots.size === 0){
+    return;
+  }
+  const selectedSpotID = ParkingState.selectedSpots.values().next().value;
+  const selectedSpot = getSpotDataById(selectedSpotID);
+  console.log(selectedSpot.price + " " + selectedSpot.id);
 }
 
 // Update selection count and total price
