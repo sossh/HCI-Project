@@ -340,10 +340,6 @@ function updateLotDropdown() {
     } else if (window.visibleLots.length > 0) {
         dropdown.selectedIndex = 0;
 
-        // focus first visible lot
-        const first = window.visibleLots[0];
-        const center = window.nameLot[first].polygon.getBounds().getCenter();
-        map.flyTo(center, 18, { duration: 0.75 });
     }
 
     currentLotIndex = dropdown.selectedIndex;

@@ -38,6 +38,7 @@ document.getElementById("guest-login").addEventListener("click", () => {
     // IMPORTANT FIX — force Leaflet to re-render
     setTimeout(() => {
         map.invalidateSize(true);
-        applyFilters()
+        // Removes the zoom to the first parking lot on the drop down
+        // applyFilters()
     }, 150);   // 150ms = safe delay for layout to settle
 });
