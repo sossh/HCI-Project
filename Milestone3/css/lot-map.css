@@ -110,6 +110,7 @@ html {
 
 #lot-view {
   position: relative;
+  flex-grow: 1;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
 }
@@ -256,15 +257,6 @@ html {
   background-color: #dddddd;
 }
 
-.spot.occupied {
-  background-color: #fdbdc3;
-  border-color: #e93431;
-  cursor: not-allowed;
-}
-
-.spot.occupied:hover {
-  background-color: #fdbdc3;
-}
 
 .spot.accessible {
   background-color: #95cfff;
@@ -319,6 +311,17 @@ html {
 .spot.selected:hover {
   background-color: #7fc881;
 }
+
+.spot.occupied {
+  background-color: #fdbdc3;
+  border-color: #e93431;
+  cursor: not-allowed;
+}
+
+.spot.occupied:hover {
+  background-color: #fdbdc3;
+}
+
 
 #bottom-bar {
   padding: 10px 20px;
