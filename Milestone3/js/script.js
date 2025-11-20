@@ -130,12 +130,6 @@ document.getElementById("distance-range").addEventListener("input", (e) => {
     applyFilters();
 });
 
-document.getElementById("traffic-range").addEventListener("input", (e) => {
-    const value = e.target.value;
-    trafficValue.textContent = value;
-    applyFilters();
-});
-
 
 // ======================================================
 // =============== BUILDING DROPDOWN ====================
