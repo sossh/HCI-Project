@@ -423,7 +423,7 @@ const publicLots = {
         isFaculty: false,
         isStaff: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -521,7 +521,7 @@ const staffLots = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     },
 
     "K Lot": {
@@ -578,7 +578,7 @@ const staffLots = {
         isVisitor: false,
         isCovered: false,
         isElectric: true,
-        isAccessible: true
+        isAccessible: false
     },
 
     "B3 Lot": {
@@ -597,7 +597,7 @@ const staffLots = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     },
 
     "B4 Lot": {
@@ -697,7 +697,7 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -952,7 +952,7 @@ const studentLot = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     },
 
     "I Lot": {
@@ -994,7 +994,7 @@ const studentLot = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     },
 
     "ACE Lot": {
@@ -1049,6 +1049,6 @@ const studentLot = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     }
 };

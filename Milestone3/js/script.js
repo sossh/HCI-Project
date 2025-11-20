@@ -1,7 +1,18 @@
-//global variable
-window.visibleLots = [];
+// ======================================================
+// =============== GLOBAL VARIABLES =====================
+// ======================================================
 
-// ******** UI Elements ********
+window.visibleLots = [];      // lots that pass filters
+let currentLotIndex = 0;      // used for next/prev navigation
+window.buildingCircle = null;
+window.currentBuilding = null;
+window.currentDistance = 500;   // default
+
+
+// ======================================================
+// =============== UI ELEMENT REFERENCES ================
+// ======================================================
+
 const distanceValue = document.getElementById("distance-value");
 const trafficValue = document.getElementById("traffic-value");
 
@@ -13,8 +24,11 @@ const nextLotBtn = document.getElementById("next-lot");
 
 const activeFiltersContainer = document.getElementById("active-filters");
 
-// ******** MAPPING ********
-// Map filter IDs → icon paths
+
+// ======================================================
+// =============== FILTER ICON MAP =======================
+// ======================================================
+
 const filterIcons = {
     faculty: "images/faculty.png",
     student: "images/student.png",
@@ -24,21 +38,45 @@ const filterIcons = {
     accessible: "images/accessible.png"
 };
 
-// ******** LOT SELECTOR SETUP ********
-let currentLotIndex = lotDropdown.selectedIndex;
+// ======================================================
+// =============== POPULATE BUILDING SELECTOR ===========
+// ======================================================
 
-// Dropdown listener for lots
+function populateBuildingDropdown() {
+    const dropdown = document.getElementById("building-list");
+    dropdown.innerHTML = ""; // clear old
+
+    // add None
+    const noneOpt = document.createElement("option");
+    noneOpt.value = "none";
+    noneOpt.textContent = "None";
+    dropdown.appendChild(noneOpt);
+
+    // Add dynamic buildings
+    Object.keys(window.buildingLocations).forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        dropdown.appendChild(opt);
+    });
+}
+
+populateBuildingDropdown();
+
+
+// ======================================================
+// =============== LOT SELECTOR / DROPDOWN ==============
+// ======================================================
+
+// User selects a lot from dropdown
 lotDropdown.addEventListener("change", () => {
     const selectedKey = lotDropdown.value;
     const lot = window.nameLot[selectedKey];
-
     if (!lot) return;
 
-    // Move map to the polygon
     const center = lot.polygon.getBounds().getCenter();
     map.flyTo(center, 18, { duration: 0.75 });
 
-    // Trigger your lot selected logic
     onLotSelected(selectedKey);
 });
 
@@ -52,11 +90,9 @@ prevLotBtn.addEventListener("click", () => {
     const lotKey = window.visibleLots[currentLotIndex];
     lotDropdown.value = lotKey;
 
-    console.log("Prev clicked, now:", lotKey);
     onLotSelected(lotKey);
 
-    const lot = window.nameLot[lotKey];
-    const center = lot.polygon.getBounds().getCenter();
+    const center = window.nameLot[lotKey].polygon.getBounds().getCenter();
     map.flyTo(center, 18, { duration: 0.75 });
 });
 
@@ -65,84 +101,116 @@ nextLotBtn.addEventListener("click", () => {
     if (window.visibleLots.length === 0) return;
 
     currentLotIndex++;
-    if (currentLotIndex >= window.visibleLots.length)
-        currentLotIndex = 0;
+    if (currentLotIndex >= window.visibleLots.length) currentLotIndex = 0;
 
     const lotKey = window.visibleLots[currentLotIndex];
     lotDropdown.value = lotKey;
 
-    console.log("Next clicked, now:", lotKey);
     onLotSelected(lotKey);
 
-    const lot = window.nameLot[lotKey];
-    const center = lot.polygon.getBounds().getCenter();
+    const center = window.nameLot[lotKey].polygon.getBounds().getCenter();
     map.flyTo(center, 18, { duration: 0.75 });
 });
 
-// Placeholder for backend teammates
+// Backend placeholder
 function onLotSelected(lotName) {
     console.log("onLotSelected() placeholder:", lotName);
 }
 
 
+// ======================================================
+// ===================== SLIDERS ========================
+// ======================================================
 
-// ******** SLIDERS ********
-
-// Distance Slider
 document.getElementById("distance-range").addEventListener("input", (e) => {
     const value = e.target.value;
+    window.currentDistance = Number(value);
+
     distanceValue.textContent = value + "m";
+
+    drawBuildingRadius();
     applyFilters();
-    console.log("Distance changed to:", value);
 });
 
-// Traffic Slider
 document.getElementById("traffic-range").addEventListener("input", (e) => {
     const value = e.target.value;
     trafficValue.textContent = value;
     applyFilters();
-    console.log("Traffic changed to:", value);
 });
 
 
+// ======================================================
+// =============== BUILDING DROPDOWN ====================
+// ======================================================
 
-// ******** BUILDING DROPDOWN ********
-buildingDropdown.addEventListener("change", (e) => {
-    const building = e.target.value;
-    console.log("Building selected:", building);
-    onBuildingSelected(building);
-});
+buildingDropdown.addEventListener("change", () => {
+    const selected = buildingDropdown.value;
 
-// Backend placeholder
-function onBuildingSelected(buildingName) {
-    console.log("onBuildingSelected() placeholder:", buildingName);
-}
+    // If user selected NONE → disable distance filtering
+    if (selected === "none") {
+        window.currentBuilding = null;
 
+        // Remove circle if exists
+        if (window.buildingCircle) {
+            map.removeLayer(window.buildingCircle);
+            window.buildingCircle = null;
+        }
 
-// ******** CHECKBOXES ********
-// ******** Overlay Icons ********
-
-function updateActiveFiltersVisibility() {
-    if (activeFiltersContainer.children.length === 0) {
-        activeFiltersContainer.classList.add("hidden");
-    } else {
-        activeFiltersContainer.classList.remove("hidden");
+        applyFilters(); 
+        return;
     }
+
+    window.currentBuilding = selected;
+    drawBuildingRadius();
+    applyFilters();
+});
+
+function drawBuildingRadius() {
+    if (!window.currentBuilding) return;
+
+    const coords = window.buildingLocations[window.currentBuilding];
+    if (!coords) return;
+
+    // Remove old circle
+    if (window.buildingCircle) {
+        map.removeLayer(window.buildingCircle);
+    }
+
+    // Draw new circle
+    window.buildingCircle = L.circle(coords, {
+        radius: window.currentDistance,
+        color: "#0077ff",
+        fillColor: "#66aaff",
+        fillOpacity: 0.15
+    }).addTo(map);
+
+    // Focus on building
+    map.flyTo(coords, 16, { duration: 0.5 });
 }
 
-// Update overlay when checkbox changes
+
+// ======================================================
+// =============== FILTER CHECKBOXES ====================
+// ======================================================
+
+// Show/hide filter bar
+function updateActiveFiltersVisibility() {
+    if (activeFiltersContainer.children.length === 0)
+        activeFiltersContainer.classList.add("hidden");
+    else
+        activeFiltersContainer.classList.remove("hidden");
+}
+
+// Checkbox event listeners
 document.querySelectorAll(".filters input[type='checkbox']").forEach(cb => {
     cb.addEventListener("change", () => {
-        console.log(`Filter '${cb.id}' is now: ${cb.checked}`);
 
         if (cb.checked) {
-            // Add icon
             const img = document.createElement("img");
             img.src = filterIcons[cb.id];
             img.id = "icon-" + cb.id;
             activeFiltersContainer.appendChild(img);
         } else {
-            // Remove icon
             const icon = document.getElementById("icon-" + cb.id);
             if (icon) icon.remove();
         }
@@ -152,10 +220,13 @@ document.querySelectorAll(".filters input[type='checkbox']").forEach(cb => {
     });
 });
 
-// Hide on page load
-updateActiveFiltersVisibility();
+updateActiveFiltersVisibility(); // Hide at start
 
-// apply the filters based in the checkboxes
+
+// ======================================================
+// ===================== FILTERING ======================
+// ======================================================
+
 function applyFilters() {
     console.log("Applying filters...");
 
@@ -163,34 +234,35 @@ function applyFilters() {
     const wantsElectric = document.getElementById("electric").checked;
     const wantsAccess   = document.getElementById("accessible").checked;
 
-    window.visibleLots = []; // reset list
+    window.visibleLots = [];
 
     Object.keys(window.nameLot).forEach(lotKey => {
         const lot = window.nameLot[lotKey];
         let matches = true;
 
+        // Spot feature filters
         if (wantsCovered && !lot.isCovered) matches = false;
         if (wantsElectric && !lot.isElectric) matches = false;
         if (wantsAccess && !lot.isAccessible) matches = false;
 
+        // -------- NEW: Distance Filter --------
+        if (window.currentBuilding) {
+            const buildingCoords = window.buildingLocations[window.currentBuilding];
+            const lotCenter = lot.polygon.getBounds().getCenter();
+            const distance = map.distance(buildingCoords, [lotCenter.lat, lotCenter.lng]);
+
+            if (distance > window.currentDistance) {
+                matches = false;
+            }
+        }
+
         if (matches) {
             window.visibleLots.push(lotKey);
-
-            // FULLY visible + clickable
-            lot.polygon.setStyle({
-                opacity: 1,
-                fillOpacity: 0.5
-            });
-
+            lot.polygon.setStyle({ opacity: 1, fillOpacity: 0.5 });
             lot.polygon._clickDisabled = false;
             lot.polygon._hoverDisabled = false;
         } else {
-            // DIMMED + DISABLED
-            lot.polygon.setStyle({
-                opacity: 0.15,
-                fillOpacity: 0.05
-            });
-
+            lot.polygon.setStyle({ opacity: 0.15, fillOpacity: 0.05 });
             lot.polygon._clickDisabled = true;
             lot.polygon._hoverDisabled = true;
         }
@@ -199,34 +271,37 @@ function applyFilters() {
     updateLotDropdown();
 }
 
+
+// ======================================================
+// =============== UPDATE LOT DROPDOWN ==================
+// ======================================================
+
 function updateLotDropdown() {
     let dropdown = document.getElementById("lot-selector");
-    const prevSelected = dropdown.value;
+    const previous = dropdown.value;
 
-    dropdown.innerHTML = ""; 
+    dropdown.innerHTML = "";
 
     window.visibleLots.forEach(lotKey => {
         const lot = window.nameLot[lotKey];
-        const opt = document.createElement("option");
+        const option = document.createElement("option");
 
-        opt.value = lotKey;
-        opt.textContent = lot.map_display_name;
+        option.value = lotKey;
+        option.textContent = lot.map_display_name;
 
-        dropdown.appendChild(opt);
+        dropdown.appendChild(option);
     });
 
-    // Restore selection if still visible
-    if (window.visibleLots.includes(prevSelected)) {
-        dropdown.value = prevSelected;
+    if (window.visibleLots.includes(previous)) {
+        dropdown.value = previous;
     } else if (window.visibleLots.length > 0) {
         dropdown.selectedIndex = 0;
 
-        // Auto-focus first visible lot
-        const first = window.nameLot[window.visibleLots[0]];
-        const center = first.polygon.getBounds().getCenter();
+        // focus first visible lot
+        const first = window.visibleLots[0];
+        const center = window.nameLot[first].polygon.getBounds().getCenter();
         map.flyTo(center, 18, { duration: 0.75 });
     }
 
-    //keep next/prev in sync
     currentLotIndex = dropdown.selectedIndex;
 }
