@@ -1,68 +1,147 @@
-const placeholder_sample = true;
+let paymentState = {
+  lotName: "",
+  spotId: "",
+  date: "",
+  startTime: "",
+  endTime: "",
+  price: 0,
+};
 
+// Payment Page
+function resetPaymentPage(spotId, lotName, pricePerHour) {
+  const overlay = document.getElementById("payment-page");
+
+  if (overlay) {
+    const form = document.getElementById("paymentForm");
+    if (form) form.reset();
+
+    const durationSelect = document.getElementById("durationSelect");
+    if (durationSelect) durationSelect.value = "2";
+
+    overlay.classList.add("show");
+
+    initReservationLogic(spotId, lotName, pricePerHour);
+  } else {
+    console.error("Error: #payment-page element missing");
+  }
+}
+
+function initReservationLogic(spotId, lotName, pricePerHour) {
+  const date = getCurrentDate();
+  const startTime = getCurrentTime();
+
+  document.getElementById("lot").textContent = lotName;
+  document.getElementById("spot").textContent = spotId;
+  document.getElementById("date").textContent = date;
+
+  paymentState.lotName = lotName;
+  paymentState.spotId = spotId;
+  paymentState.date = date;
+  paymentState.startTime = startTime;
+
+  const durationSelect = document.getElementById("durationSelect");
+
+  function updateTotals() {
+    const hours = parseInt(durationSelect.value);
+    const endTime = addHoursToTime(startTime, hours);
+    const total = pricePerHour * hours;
+
+    document.getElementById("time").textContent = formatTimeRange(
+      startTime,
+      endTime
+    );
+    document.getElementById("price").textContent = formatCurrency(total);
+
+    paymentState.endTime = endTime;
+    paymentState.price = total;
+  }
+
+  durationSelect.onchange = updateTotals;
+  updateTotals();
+}
+
+function formatCurrency(val) {
+  return "$" + Number(val).toFixed(2);
+}
 function formatTimeRange(start, end) {
-  if (!start && !end) return "–";
-  if (!end) return start || "–";
-  return `${start} – ${end}`;
+  return `${start} - ${end}`;
+}
+function getCurrentDate() {
+  return new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+function getCurrentTime() {
+  const now = new Date();
+  return `${String(now.getHours()).padStart(2, "0")}:${String(
+    now.getMinutes()
+  ).padStart(2, "0")}`;
 }
 
-function goToHome() {
-    window.location.href = "index.html";
-}
-function goToConfirmation() {
+function addHoursToTime(timeString, hoursToAdd) {
+  const parts = timeString.split(":");
+  const h = Number(parts[0]);
+  const m = Number(parts[1]);
 
-    window.location.href = "confirmationPage.html";
-}
-
-
-function loadReservation() {
-    let lotId = localStorage.getItem("resLotId");
-    let lotName = localStorage.getItem("resLotName");
-    let spotId = localStorage.getItem("resSpotId");
-    let date = localStorage.getItem("resDate");
-    let startTime = localStorage.getItem("resStartTime");
-    let endTime = localStorage.getItem("resEndTime");
-    let price = localStorage.getItem("resPrice");
-
-    const hasRealData = lotId || lotName || spotId || date || startTime || endTime || price;
-    if(!hasRealData) {
-        if(!placeholder_sample) {
-            alert("Please select a parking lot first.");
-            window.location.href = "index.html";
-            return null;
-        }
-        lotId = "Q";
-        lotName = "Q Lot";
-        spotId = "Q-12";
-        date = "2025-11-20";
-        startTime = "09:00";
-        endTime = "11:00";
-        price = "6.5"; 
-    }
-
-    const priceNum = price ? Number(price) : NaN;
-    const lotText = lotName ? lotName + "(" + (lotId || "") + ")" : lotId || "-";
-    
-    document.getElementById("lot").textContent = lotText;
-    document.getElementById("spot").textContent = spotId || "-";
-    document.getElementById("date").textContent = date || "-";
-    document.getElementById("time").textContent = formatTimeRange(startTime, endTime);
-    document.getElementById("price").textContent = isNaN(priceNum) ? "$0.00" : "$" + priceNum.toFixed(2);
-
-    return {lotId, lotName, spotId, date, startTime, endTime, price: priceNum};
+  const newHour = (h + hoursToAdd) % 24;
+  return String(newHour).padStart(2, "0") + ":" + String(m).padStart(2, "0");
 }
 
+// Confirmation Page
+window.loadConfirmationPage = function (data) {
+  const overlay = document.getElementById("confirm-page");
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    const reservation = loadReservation();
-    if(!reservation && !placeholder_sample) return;
+  document.getElementById("confirmLot").textContent = data.lotName;
+  document.getElementById("confirmSpot").textContent = data.spotId;
+  document.getElementById("confirmDate").textContent = data.date;
+  document.getElementById("confirmTime").textContent = formatTimeRange(
+    data.startTime,
+    data.endTime
+  );
+  document.getElementById("confirmPrice").textContent = formatCurrency(
+    data.price
+  );
 
-    const backBtn = document.getElementById("backBtn");
-    const paymentForm = document.getElementById("paymentForm");
+  overlay.classList.add("show");
+};
 
-    backBtn.addEventListener("click", ()=>{goToHome();});
-    paymentForm.addEventListener("submit", (e) =>{
-        e.preventDefault();
-        goToConfirmation();
+// Buttons
+document.addEventListener("DOMContentLoaded", () => {
+  // Submit Payment
+  const paymentForm = document.getElementById("paymentForm");
+  if (paymentForm) {
+    paymentForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.getElementById("payment-page").classList.remove("show");
+      window.loadConfirmationPage(paymentState);
     });
+  }
+
+  // Back Button (Payment)
+  const backBtn = document.getElementById("backBtn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      document.getElementById("payment-page").classList.remove("show");
+    });
+  }
+
+  // Back to Map Button (Confirmation)
+  const backToMapBtn = document.getElementById("backToMapBtn");
+  if (backToMapBtn) {
+    backToMapBtn.addEventListener("click", () => {
+      const confirmPage = document.getElementById("confirm-page");
+      if (confirmPage) confirmPage.classList.remove("show");
+
+      const paymentPage = document.getElementById("payment-page");
+      if (paymentPage) paymentPage.classList.remove("show");
+
+      const lotPage = document.getElementById("parking-overlay-container");
+
+      if (lotPage) {
+        lotPage.classList.remove("show");
+      }
+    });
+  }
 });

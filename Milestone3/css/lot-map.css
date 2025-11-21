@@ -20,6 +20,10 @@ html {
   display: none;
 }
 
+#parking-overlay-container.show{
+  display: flex;
+}
+
 #top-bar {
   padding: 10px 20px;
   background-color: #1b4571;
@@ -306,6 +310,8 @@ html {
 .spot.selected {
   background-color: #92e195;
   border-color: #329137;
+  border-width: 5px;
+  box-sizing: border-box 
 }
 
 .spot.selected:hover {
