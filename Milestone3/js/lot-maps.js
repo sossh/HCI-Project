@@ -504,7 +504,7 @@ document.addEventListener("click", function (event) {
 
 // Function to handle close button click
 function handleCloseClick() {
-  ParkingState.elements.overlayContainer.style.display = "none";
+  ParkingState.elements.overlayContainer.classList.remove("show");
 }
 
 // Function to handle buy button click

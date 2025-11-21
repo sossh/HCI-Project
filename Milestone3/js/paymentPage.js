@@ -20,13 +20,11 @@ function resetPaymentPage(spotId, lotName, pricePerHour) {
 
     overlay.classList.add("show");
 
-    initReservationLogic(spotId, lotName, pricePerHour);
-  } else {
-    console.error("Error: #payment-page element missing");
-  }
+    startReservation(spotId, lotName, pricePerHour);
+  } 
 }
 
-function initReservationLogic(spotId, lotName, pricePerHour) {
+function startReservation(spotId, lotName, pricePerHour) {
   const date = getCurrentDate();
   const startTime = getCurrentTime();
 
@@ -63,29 +61,33 @@ function initReservationLogic(spotId, lotName, pricePerHour) {
 function formatCurrency(val) {
   return "$" + Number(val).toFixed(2);
 }
+
 function formatTimeRange(start, end) {
-  return `${start} - ${end}`;
+  return start + " - " + end;
 }
+
 function getCurrentDate() {
-  return new Date().toLocaleDateString("en-US", {
+  var now = new Date();
+  return now.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    year: "numeric",
+    year: "numeric"
   });
 }
+
 function getCurrentTime() {
-  const now = new Date();
-  return `${String(now.getHours()).padStart(2, "0")}:${String(
-    now.getMinutes()
-  ).padStart(2, "0")}`;
+  var now = new Date();
+  var h = String(now.getHours()).padStart(2, "0");
+  var m = String(now.getMinutes()).padStart(2, "0");
+  return h + ":" + m;
 }
 
 function addHoursToTime(timeString, hoursToAdd) {
-  const parts = timeString.split(":");
-  const h = Number(parts[0]);
-  const m = Number(parts[1]);
+  var parts = timeString.split(":");
+  var h = Number(parts[0]);
+  var m = Number(parts[1]);
 
-  const newHour = (h + hoursToAdd) % 24;
+  var newHour = (h + hoursToAdd) % 24;
   return String(newHour).padStart(2, "0") + ":" + String(m).padStart(2, "0");
 }
 
