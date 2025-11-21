@@ -101,9 +101,9 @@ function buildAreas() {
     // const filters = getFilters(); // Get all applied filters set on the ui
     // const filteredLots = getFilteredParkingLots(filters)
 
-    drawLots(publicLots, '#3388ff');
-    drawLots(staffLots, '#ff3388');
-    drawLots(studentLot, '#ffaa33');
+    drawLots(publicLots, '#00ffffff');
+    drawLots(staffLots, '#ff0019ff');
+    drawLots(studentLot, '#ffae00ff');
     
     applyFilters();
 }

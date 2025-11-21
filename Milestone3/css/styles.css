@@ -60,7 +60,8 @@ header h1 {
 }
 
 .logout-btn:hover {
-  background-color: #163a5e;
+  background-color: #ef0909;
+  color: white;
 }
 
 /* ========================================= */
@@ -231,20 +232,20 @@ h2 {
 
 /* Accessible (blue) */
 .filters label:has(#accessible) .icon {
-  background-color: #95cfff; 
-  border: 1px solid #47a9ff;
+  background-color: #3f8ad4; 
+  border: 1px solid #000000;
 }
 
 /* Electric (purple) */
 .filters label:has(#electric) .icon {
-  background-color: #e3b8f6;
-  border: 1px solid #c27def;
+  background-color: #c338ff;
+  border: 1px solid #000000;
 }
 
 /* Covered (yellow) */
 .filters label:has(#covered) .icon {
-  background-color: #ffe599;
-  border: 1px solid #efc94b;
+  background-color: #FFC20A;
+  border: 1px solid #000000;
 }
 
 .filters input[type="checkbox"] {

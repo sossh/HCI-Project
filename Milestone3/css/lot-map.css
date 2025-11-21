@@ -256,8 +256,8 @@
 
 
 .spot.accessible {
-  background-color: #95cfff;
-  border-color: #47a9ff;
+  background-color: #3f8ad4;
+  border-color: #010102;
 }
 
 .accessible-icon {
@@ -267,12 +267,12 @@
 }
 
 .spot.accessible:hover {
-  background-color: #72b3e8;
+  background-color: #3f8ad4;
 }
 
 .spot.ev {
-  background-color: #e3b8f6;
-  border-color: #c27def;
+  background-color: #c338ff;
+  border-color: #000000;
 }
 
 .spot.ev:hover {
@@ -286,8 +286,8 @@
 }
 
 .spot.covered {
-  background-color: #ffe599;
-  border-color: #efc94b;
+  background-color: #FFC20A;
+  border-color: #000000;
 }
 
 .spot.covered:hover {
@@ -302,7 +302,7 @@
 
 .spot.selected {
   background-color: #92e195;
-  border-color: #329137;
+  border-color: #000000;
   border-width: 5px;
   box-sizing: border-box 
 }
@@ -312,8 +312,8 @@
 }
 
 .spot.occupied {
-  background-color: #fdbdc3;
-  border-color: #e93431;
+  background-color: #e93431;
+  border-color: #000000;
   cursor: not-allowed;
 }
 
