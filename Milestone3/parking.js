@@ -134,6 +134,26 @@ function drawLots(lotGroup, color) {
     }
 }
 
+function applyLotVisibility(polygon, isVisible) {
+    // store custom state
+    polygon._visible = isVisible;
+    polygon._clickDisabled = !isVisible;
+    polygon._hoverDisabled = !isVisible;
+    polygon._labelDisabled = !isVisible;
+
+    // Apply polygon dimming
+    polygon.setStyle({
+        fillOpacity: isVisible ? 0.4 : 0.05,
+        opacity: isVisible ? 1 : 0.15,
+    });
+
+    // Apply label visibility
+    const tooltip = polygon.getTooltip();
+    if (tooltip && tooltip._container) {
+        tooltip._container.style.display = isVisible ? "block" : "none";
+    }
+}
+
 // Return all parking lots that have at least one spot where the given filters are true
 // Filters are just the tags given to each parking spot, example: ["isAccessible", "isAvailiable"]
 // If no filters are given returns all parking lots

@@ -295,13 +295,29 @@ function applyFilters() {
         // === APPLY VISIBILITY ===
         if (matches) {
             window.visibleLots.push(lotKey);
+
             lot.polygon.setStyle({ opacity: 1, fillOpacity: 0.5 });
+
             lot.polygon._clickDisabled = false;
             lot.polygon._hoverDisabled = false;
+            lot.polygon._labelDisabled = false;
+
+            // SHOW LABEL
+            const tooltip = lot.polygon.getTooltip();
+            if (tooltip && tooltip._container)
+                tooltip._container.style.display = "block";
+
         } else {
             lot.polygon.setStyle({ opacity: 0.15, fillOpacity: 0.05 });
+
             lot.polygon._clickDisabled = true;
             lot.polygon._hoverDisabled = true;
+            lot.polygon._labelDisabled = true;
+
+            // HIDE LABEL
+            const tooltip = lot.polygon.getTooltip();
+            if (tooltip && tooltip._container)
+                tooltip._container.style.display = "none";
         }
     });
 
