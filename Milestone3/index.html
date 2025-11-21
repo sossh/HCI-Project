@@ -6,6 +6,7 @@
     <title>Parking Finder Prototype</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/lot-map.css" />
+    <link rel="stylesheet" href="css/loginPage.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -241,10 +242,150 @@
       </div>
     </div>
 
+    <!-- Payment Page -->
+    <header class="paymentHeader">Parking Finder</header>
+    <div id="payment">
+      <h2>Payment</h2>
+      <h3>Review your reservation and enter your payment details.</h3>
+      <div class="summary">
+        <h3>Reservation Summary</h3>
+        <div class="formText summaryCard">
+          <h3 class="summaryTitle">Reservation summary</h3>
+          <div class="formTextRow">
+            <span>Lot</span>
+            <span id="lot">–</span>
+          </div>
+          <div class="formTextRow">
+            <span>Parking spot</span>
+            <span id="spot">–</span>
+          </div>
+          <div class="formTextRow">
+            <span>Date</span>
+            <span id="date">–</span>
+          </div>
+          <div class="formTextRow">
+            <span>Time</span>
+            <span id="time">–</span>
+          </div>
+          <div class="formTextRow summaryTotal">
+            <span>Total</span>
+            <span id="price">$0.00</span>
+          </div>
+        </div>
+
+        <form id="paymentForm">
+          <div class="formText">
+            <label for="cardName">Cardholder name</label>
+            <input
+              id="cardName"
+              type="text"
+              class="inputText"
+              placeholder="Name on card"
+              required
+            />
+          </div>
+
+          <div class="formText">
+            <label for="cardNumber">Card number</label>
+            <input
+              id="cardNumber"
+              type="text"
+              class="inputText"
+              placeholder="1234 5678 9012 3456"
+              required
+            />
+          </div>
+
+          <div class="formTextRow">
+            <div class="formText">
+              <label for="cardExpiry">Expiry</label>
+              <input
+                id="cardExpiry"
+                type="text"
+                class="inputText"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+
+            <div class="formText">
+              <label for="cardCVV">CVV</label>
+              <input
+                id="cardCVV"
+                type="text"
+                class="inputText"
+                placeholder="123"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="formTextRow">
+            <button type="button" id="backBtn" class="guestBtn">Back</button>
+            <button type="submit" id="confirmPaymentBtn" class="signInBtn">
+              Confirm Payment
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirmation Page -->
+
+    <header class="paymentHeader">Parking Finder</header>
+
+    <div id="confirmation">
+      <div class="confirmIconWrapper">
+        <div class="confirmIcon">✓</div>
+      </div>
+
+      <h2>Booking confirmed</h2>
+      <h3>Your parking spot has been reserved and payment was processed.</h3>
+
+      <div class="summary">
+        <h3>Reservation Summary</h3>
+
+        <div class="formText summaryCard">
+          <h3 class="summaryTitle">Reservation details</h3>
+
+          <div class="formTextRow">
+            <span>Lot</span>
+            <span id="confirmLot">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Parking spot</span>
+            <span id="confirmSpot">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Date</span>
+            <span id="confirmDate">–</span>
+          </div>
+
+          <div class="formTextRow">
+            <span>Time</span>
+            <span id="confirmTime">–</span>
+          </div>
+
+          <div class="formTextRow summaryTotal">
+            <span>Paid</span>
+            <span id="confirmPrice">$0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="formTextRow">
+        <button id="backToMapBtn" class="signInBtn">Back to map</button>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
     <script src="js/lot-maps.js"></script>
     <script src="parking.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/paymentPage.js"></script>
+    <script src="js/confirmationPage.js"></script>
     <script src="leafLet.js"></script>
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
