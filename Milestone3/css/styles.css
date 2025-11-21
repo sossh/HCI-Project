@@ -449,3 +449,21 @@ h2 {
   margin: 4px 0;
   font-weight: normal;
 }
+
+/* ========================================= */
+/*                LOGOUT BUTTON              */
+/* ========================================= */
+.logout-btn {
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 3px;
+}
+
+.logout-btn:hover {
+  background-color: #163a5e;
+}
