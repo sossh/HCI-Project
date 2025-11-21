@@ -4,15 +4,15 @@ var parkingLots = {
     name: "Q Lot",
     rows: 8,
     cols: 6,
-    defaultSpotPrice: 12,
+    defaultSpotPrice: 2.25,
     specialSpots: [
       { row: 0, col: 0, status: "occupied" },
-      { row: 0, col: 1, features: ["accessible"], price: 12 },
-      { row: 0, col: 2, features: ["accessible"], price: 12 },
+      { row: 0, col: 1, features: ["accessible"]},
+      { row: 0, col: 2, features: ["accessible"]},
       { row: 1, col: 0, status: "occupied" },
       { row: 1, col: 1, features: ["accessible"], price: 15 },
-      { row: 2, col: 4, features: ["ev"], price: 15 },
-      { row: 2, col: 5, features: ["ev"], price: 15 },
+      { row: 2, col: 4, features: ["ev"], price: 4.75 },
+      { row: 2, col: 5, features: ["ev"], price: 4.75 },
       { row: 3, col: 0, features: ["covered"], price: 15 },
       { row: 3, col: 1, features: ["empty"], price: 15 },
       { row: 3, col: 2, features: ["empty"], price: 15 },
@@ -27,7 +27,7 @@ var parkingLots = {
     name: "Parkade",
     rows: 10,
     cols: 10,
-    defaultSpotPrice: 5,
+    defaultSpotPrice: 2.75,
     specialSpots: [
       { row: 0, col: 0, status: "occupied" },
       { row: 1, col: 1, status: "occupied" },
@@ -43,11 +43,11 @@ var parkingLots = {
     name: "N Lot",
     rows: 16,
     cols: 14,
-    defaultSpotPrice: 12,
+    defaultSpotPrice: 2,
     specialSpots: [
-      { row: 0, col: 0, status: "occupied", features: ["accessible"], price: 12 },
-      { row: 0, col: 1, features: ["accessible"], price: 12 },
-      { row: 0, col: 12, features: ["ev"], price: 15 },
+      { row: 0, col: 0, status: "occupied", features: ["accessible"] },
+      { row: 0, col: 1, features: ["accessible"]},
+      { row: 0, col: 12, features: ["ev"], price: 4.75 },
       { row: 0, col: 13, features: ["empty"], price: 0 },
       { row: 1, col: 0, features: ["empty"], price: 0 },
       { row: 1, col: 1, features: ["empty"], price: 0 },
@@ -62,7 +62,7 @@ var parkingLots = {
       { row: 1, col: 10, features: ["empty"], price: 0 },
       { row: 1, col: 11, features: ["empty"], price: 0 },
       { row: 1, col: 12, features: ["empty"], price: 0 },
-      { row: 1, col: 13, features: ["ev"], price: 15 },
+      { row: 1, col: 13, features: ["ev"], price: 4.75 },
       { row: 2, col: 0, features: ["empty"], price: 0 },
       { row: 2, col: 1, features: ["empty"], price: 0 },
       { row: 2, col: 2, features: ["empty"], price: 0 },
@@ -76,9 +76,9 @@ var parkingLots = {
       { row: 2, col: 10, features: ["empty"], price: 0 },
       { row: 2, col: 11, features: ["empty"], price: 0 },
       { row: 2, col: 12, features: ["empty"], price: 0 },
-      { row: 3, col: 0, features: ["accessible"], price: 12 },
-      { row: 3, col: 1, features: ["accessible"], price: 12 },
-      { row: 3, col: 2, features: ["accessible"], price: 12 },
+      { row: 3, col: 0, features: ["accessible"] },
+      { row: 3, col: 1, features: ["accessible"] },
+      { row: 3, col: 2, features: ["accessible"] },
       { row: 3, col: 10, features: ["empty"], price: 0 },
       { row: 3, col: 11, features: ["empty"], price: 0 },
       { row: 3, col: 12, features: ["empty"], price: 0 },
@@ -118,7 +118,7 @@ var parkingLots = {
       { row: 6, col: 9, features: ["empty"], price: 0 },
       { row: 6, col: 11, features: ["empty"], price: 0 },
       { row: 6, col: 12, features: ["empty"], price: 0 },
-      { row: 6, col: 13, features: ["accessible"], price: 12 },
+      { row: 6, col: 13, features: ["accessible"] },
       { row: 7, col: 0, features: ["empty"], price: 0 },
       { row: 7, col: 1, features: ["empty"], price: 0 },
       { row: 7, col: 2, features: ["empty"], price: 0 },
@@ -131,7 +131,7 @@ var parkingLots = {
       { row: 7, col: 9, features: ["empty"], price: 0 },
       { row: 7, col: 11, features: ["empty"], price: 0 },
       { row: 7, col: 12, features: ["empty"], price: 0 },
-      { row: 7, col: 13, features: ["accessible"], price: 12 },
+      { row: 7, col: 13, features: ["accessible"] },
       { row: 8, col: 0, features: ["empty"], price: 0 },
       { row: 8, col: 1, features: ["empty"], price: 0 },
       { row: 8, col: 2, features: ["empty"], price: 0 },
@@ -144,7 +144,7 @@ var parkingLots = {
       { row: 8, col: 9, features: ["empty"], price: 0 },
       { row: 8, col: 11, features: ["empty"], price: 0 },
       { row: 8, col: 12, features: ["empty"], price: 0 },
-      { row: 8, col: 13, features: ["accessible"], price: 12 },
+      { row: 8, col: 13, features: ["accessible"] },
       { row: 9, col: 0, features: ["empty"], price: 0 },
       { row: 9, col: 1, features: ["empty"], price: 0 },
       { row: 9, col: 2, features: ["empty"], price: 0 },
@@ -157,7 +157,7 @@ var parkingLots = {
       { row: 9, col: 9, features: ["empty"], price: 0 },
       { row: 9, col: 11, features: ["empty"], price: 0 },
       { row: 9, col: 12, features: ["empty"], price: 0 },
-      { row: 9, col: 13, features: ["accessible"], price: 12 },
+      { row: 9, col: 13, features: ["accessible"] },
       { row: 10, col: 0, features: ["empty"], price: 0 },
       { row: 10, col: 1, features: ["empty"], price: 0 },
       { row: 10, col: 2, features: ["empty"], price: 0 },
@@ -182,9 +182,9 @@ var parkingLots = {
       { row: 11, col: 9, features: ["empty"], price: 0 },
       { row: 11, col: 11, features: ["empty"], price: 0 },
       { row: 11, col: 12, features: ["empty"], price: 0 },
-      { row: 12, col: 0, features: ["accessible"], price: 12 },
-      { row: 12, col: 1, features: ["accessible"], price: 12 },
-      { row: 12, col: 2, features: ["accessible"], price: 12 },
+      { row: 12, col: 0, features: ["accessible"] },
+      { row: 12, col: 1, features: ["accessible"] },
+      { row: 12, col: 2, features: ["accessible"] },
       { row: 12, col: 10, features: ["empty"], price: 0 },
       { row: 12, col: 11, features: ["empty"], price: 0 },
       { row: 12, col: 12, features: ["empty"], price: 0 },
@@ -214,8 +214,8 @@ var parkingLots = {
       { row: 14, col: 10, features: ["empty"], price: 0 },
       { row: 14, col: 11, features: ["empty"], price: 0 },
       { row: 14, col: 12, features: ["empty"], price: 0 },
-      { row: 14, col: 13, features: ["ev"], price: 15 },
-      { row: 15, col: 12, features: ["ev"], price: 15 },
+      { row: 14, col: 13, features: ["ev"], price: 4.75 },
+      { row: 15, col: 12, features: ["ev"], price: 4.75 },
       { row: 15, col: 13, features: ["empty"], price: 0 },
     ],
   },
@@ -224,6 +224,7 @@ var parkingLots = {
 // State of current instance of lot overlay
 var ParkingState = {
   spotGrid: [],
+  lotName: "None",
   selectedSpots: new Set(),
   panzoomObject: null,
   totalAvailableSpots: 0,
@@ -362,7 +363,9 @@ function showLot() {
       // Get classes for this spot
       var classList = "spot";
       var spotIdString = spot.id;
+      var spotprice = "$"+spot.price + "/h";
       var isEmptySpot = false;
+
 
       if (spot.status === "occupied") {
         classList += " occupied";
@@ -377,9 +380,10 @@ function showLot() {
         }
       }
 
+
       // No text for empty spots
       if (isEmptySpot) {
-        spotIdString = "";
+        spotprice = "";
       }
 
       // Set Feature display text
@@ -405,17 +409,16 @@ function showLot() {
       }
 
       // Add single spot to grid HTML
-      gridString +=
-        '<div class="' +
-        classList +
-        '"' +
-        ' id="' +
-        spot.id +
-        '"' +
-        '">' +
-        spotIdString +
-        featureSpan +
-        "</div>";
+gridString +=
+  '<div class="' +
+  classList +
+  '" id="' +
+  spot.id +
+  '" data-row="' + r + '" data-col="' + c + '">' +
+  spotprice +
+  featureSpan +
+  "</div>";
+
     }
   }
 
@@ -506,10 +509,27 @@ function handleCloseClick() {
 
 // Function to handle buy button click
 function handleBuyClick() {
-  loadParkingLot(lotB);
-  const selectedSpots = ParkingState.selectedSpots;
-  // TODO: Return selected spot data to main app
+  if (ParkingState.selectedSpots.size === 0) {
+    return;
+  }
+
+  const selectedSpotID = ParkingState.selectedSpots.values().next().value;
+  const selectedSpot = getSpotDataById(selectedSpotID);
+  const spotElement = document.getElementById(selectedSpotID);
+
+
+  const row = parseInt(spotElement.dataset.row, 10);
+  const col = parseInt(spotElement.dataset.col, 10);
+
+  parkingLots[ParkingState.lotName].specialSpots.push({
+    row: row,
+    col: col,
+    status: "occupied"
+  });
+
+  resetPaymentPage(selectedSpot.id, ParkingState.lotName, selectedSpot.price);
 }
+
 
 // Update selection count and total price
 function updateSelectionAndPrice() {
@@ -532,7 +552,7 @@ function updateSelectionAndPrice() {
 function loadParkingLot(lotData) {
   // Unhide overlay
   if (ParkingState.elements.overlayContainer) {
-    ParkingState.elements.overlayContainer.style.display = "flex";
+    ParkingState.elements.overlayContainer.classList.add("show")
   }
 
   // Set panning state
@@ -545,6 +565,8 @@ function loadParkingLot(lotData) {
 
   // Set lot name
   ParkingState.elements.lotName.textContent = lotData.name;
+  ParkingState.lotName = lotData.name;
+
 
   // Create spot grid for lot
   ParkingState.spotGrid = createLotGrid(lotData);

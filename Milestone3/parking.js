@@ -1,10 +1,27 @@
 function onLotClick(campusLot, lotName) {
-  map.once('moveend', function() {
+  const targetCenter = campusLot.getBounds().getCenter();
+  const targetZoom = 18;
+
+  const currentCenter = map.getCenter();
+  const currentZoom = map.getZoom();
+
+  // Only fly to lot if not already at lot.
+  if (
+    Math.abs(currentCenter.lat - targetCenter.lat) < 0.01 &&
+    Math.abs(currentCenter.lng - targetCenter.lng) < 0.01 &&
+    currentZoom === targetZoom
+  ) {
+    displayLotByName(lotName);
+    return;
+  }
+
+  map.flyTo(targetCenter, targetZoom, { duration: 0.75 });
+
+  map.once("moveend", function () {
     displayLotByName(lotName);
   });
-  const center = campusLot.getBounds().getCenter();
-  map.flyTo(center, 18, { duration: 0.75 });
 }
+
 
 function onHover(campusLot) {
   campusLot.setStyle({ weight: 4, fillOpacity: 1 });
