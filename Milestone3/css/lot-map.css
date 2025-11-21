@@ -1,12 +1,3 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Helvetica, sans-serif;
-}
-
 #parking-overlay-container {
   width: 100%;
   height: 100%;
@@ -117,6 +108,8 @@ html {
   flex-grow: 1;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
+  flex: 1;
+  min-height: 0;
 }
 
 #parking-lot {
@@ -330,7 +323,7 @@ html {
 
 
 #bottom-bar {
-  padding: 10px 20px;
+  padding: 8px 16px;
   background-color: #ffffff;
   border-top: 1px solid #b6b6b6;
   display: flex;
