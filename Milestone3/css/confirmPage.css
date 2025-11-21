@@ -1,0 +1,186 @@
+/*Payment page*/
+
+.paymentHeader {
+  padding: 10px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+#payment {
+  max-width: 520px;
+  margin: 32px auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+#payment h3 {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: normal;
+}
+
+.summary > h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.summaryCard {
+  background: #f5f7fb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  
+}
+
+.summaryTitle {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.formTextRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.formTextRow span:last-child {
+  font-weight: 500;
+}
+
+.summaryTotal {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #d0d4e4;
+  font-weight: 600;
+}
+
+.formTextRow {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    margin-bottom: 8px;             
+}
+
+.guestBtn,
+.signInBtn {
+  border-radius: 5px;
+  padding: 1.5% 2.5%;
+  border: none;
+  font-size: 90%;
+  cursor: pointer;
+}
+
+.guestBtn {
+  background-color: #c4d2d6;
+  color: #1b4571;
+}
+
+.signInBtn {
+  background-color: #1b4571;
+  color: white;
+}
+
+#paymentForm .formTextRow:last-of-type {
+  margin-top: 10px;
+}
+
+/*Confirmation page*/
+
+#confirmation {
+  max-width: 520px;
+  margin: 32px auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+#confirmation h2 {
+  margin-top: 8px;
+  margin-bottom: 4px;
+  color: #1b4571;
+}
+
+#confirmation h3 {
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: normal;
+}
+
+.confirmIconWrapper {
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+.confirmIcon {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.35);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+#confirmation .summary > h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Center the bottom button */
+#confirmation .formTextRow {
+  justify-content: center;
+}
+
+#backToMapBtn {
+  width: 100%;
+}
+
+
+#payment-page, 
+#confirm-page {
+  display: none;           
+  
+
+  position: fixed;         
+  top: 0;
+  left: 0;
+  width: 100%;             
+  height: 100%;            
+  
+  z-index: 1000000;        
+  
+  background-color: #c4d2d6; 
+  overflow-y: auto;        
+}
+
+
+#confirm-page {
+  z-index: 1000001;
+}
+
+
+#payment-page.show, 
+#confirm-page.show {
+  display: block;
+
+  
+}
