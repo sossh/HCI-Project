@@ -1,3 +1,5 @@
+
+
 function onLotClick(campusLot, lotName) {
   const targetCenter = campusLot.getBounds().getCenter();
   const targetZoom = 18;
@@ -23,6 +25,7 @@ function onLotClick(campusLot, lotName) {
 }
 
 
+
 function onHover(campusLot) {
   campusLot.setStyle({ weight: 4, fillOpacity: 1 });
 }
@@ -38,7 +41,13 @@ function renderLeaflet() {
   //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
   // }).addTo(map);
+  map.setMinZoom(15);
+  const southWest = L.latLng(49.83778, -97.09311);
+  const northEast = L.latLng(49.78773, -97.17341);
+  const bounds = L.latLngBounds(southWest, northEast);
 
+  map.setMaxBounds(bounds);
+  map.options.maxBoundsViscosity = 1.0;
   // Cleaner map design, imo.
   L.tileLayer("https://tile.openstreetmap.de/{z}/{x}/{y}.png", {
     maxZoom: 18,
@@ -80,7 +89,7 @@ function drawLots(lotGroup, color) {
     polygon.bindTooltip(lotGroup[lotName].map_display_name, {
       permanent: true,
       direction: "center",
-      className: "polygon-label",
+      className: "polygon-label zoom-label",
     });
 
     polygon.on("click", () => onLotClick(polygon, lotName));
@@ -1893,8 +1902,8 @@ const staffLots = {
             }
         ]
     },
-    "ALC Lot": {
-        "map_display_name": "ALC",
+    "ALC 1 Lot": {
+        "map_display_name": "ALC 1",
         "area": [
             [
                 49.8074377,
@@ -2948,3 +2957,5 @@ const studentLot = {
         ]
     }
 }
+
+
