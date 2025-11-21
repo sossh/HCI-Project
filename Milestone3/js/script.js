@@ -146,6 +146,11 @@ buildingDropdown.addEventListener("change", () => {
         if (window.buildingCircle) {
             map.removeLayer(window.buildingCircle);
             window.buildingCircle = null;
+
+            if (window.buildingMarker) {    //if there's a marker remove it.
+                map.removeLayer(window.buildingMarker);
+            }
+            
         }
 
         applyFilters(); 
