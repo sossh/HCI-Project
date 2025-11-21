@@ -116,6 +116,31 @@ document.addEventListener("DOMContentLoaded", () => {
   if (paymentForm) {
     paymentForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      const cardName = document.getElementById("cardName").value.trim();
+      const cardNumber = document.getElementById("cardNumber").value.trim();
+      const cardExpiry = document.getElementById("cardExpiry").value.trim();
+      const cardCVV = document.getElementById("cardCVV").value.trim();
+
+      // ========= CARD NUMBER =========
+      if (!/^\d{16}$/.test(cardNumber)) {
+        alert("Card number must be exactly 16 digits.");
+        return;
+      }
+
+      // ========= EXPIRY (MM/YY) =========
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExpiry)) {
+        alert("Expiry must be in MM/YY format.");
+        return;
+      }
+
+      // ========= CVV =========
+      if (!/^\d{3}$/.test(cardCVV)) {
+        alert("CVV must be a 3-digit number.");
+        return;
+      }
+
+      // If all good continue
       document.getElementById("payment-page").classList.remove("show");
       loadConfirmationPage(paymentState);
     });

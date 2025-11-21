@@ -390,7 +390,7 @@ document.addEventListener("click", function (e) {
     const nearbyBtn = document.querySelector(".info-button-nearby");
     const nearbyPopup = document.querySelector(".info-popup-nearby");
 
-    // If click is outside filters popup + button → close it
+    // If click is outside filters popup + button close it
     if (
         filtersPopup &&
         !filtersPopup.contains(e.target) &&
@@ -399,7 +399,7 @@ document.addEventListener("click", function (e) {
         filtersPopup.classList.remove("show");
     }
 
-    // If click is outside nearby popup + button → close it
+    // If click is outside nearby popup + button close it
     if (
         nearbyPopup &&
         !nearbyPopup.contains(e.target) &&
