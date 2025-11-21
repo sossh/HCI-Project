@@ -81,7 +81,20 @@
 
           <!-- FILTERS -->
           <aside class="filters">
-            <h2>Filters</h2>
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <h2 style="margin:0;">Filters</h2>
+
+                <div class="info-container">
+                    <button class="info-button-filters">?</button>
+                    <div class="info-popup-filters">
+                        <ul>
+                            <li>Check vehicle features you need.</li>
+                            <li>Filters update the lots instantly.</li>
+                            <li>Combine multiple filters anytime.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <div class="scrollable">
 
@@ -111,28 +124,40 @@
 
             </div>
 
-            <hr />
-            <!--
-            TRAFFIC SLIDER-->
           </aside>
 
           <!-- BUILDING SELECTOR -->
           <aside class="building-selector">
-            <h2>Parkings Nearby</h2>
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <h2 style="margin:0;">Parkings Nearby</h2>
+                <div class="info-container">
+                    <button class="info-button-nearby">?</button>
+                    <div class="info-popup-nearby">
+                        <ul>
+                            <li>Select a building to find nearby parking.</li>
+                            <li>Use the distance slider to filter results.</li>
+                            <li>Lots update automatically based on your filters.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <label for="building-list">Select a Building:</label>
+            <div class="scrollable">
+              <label for="building-list">Select a Building:</label>
 
-            <!-- NOW DYNAMICALLY POPULATED FROM buildings.js -->
-            <!-- Includes "None" by default -->
-            <select id="building-list">
-                <option value="none">None</option>
-            </select>
+              <!-- NOW DYNAMICALLY POPULATED FROM buildings.js -->
+              <!-- Includes "None" by default -->
+              <select id="building-list">
+                  <option value="none">None</option>
+              </select>
 
-            <hr />
+              <hr />
 
-            <label for="distance-range">Distance (m):</label>
-            <input type="range" id="distance-range" min="0" max="500" value="500"/>
-            <span id="distance-value">500m</span>
+              <label for="distance-range">Distance (m):</label>
+              <input type="range" id="distance-range" min="0" max="500" value="500"/>
+              <span id="distance-value">500m</span>
+            </div>
+
           </aside>
         </div>
 
@@ -187,12 +212,12 @@
 
             <div class="info-container">
               <button id="info-button">?</button>
-              <div id="info" class="instructions show">
-                <ul>
-                  <li>Click and drag to pan. Mouse wheel to zoom.</li>
-                  <li>Click spots to select.</li>
-                  <li>Only one spot can be selected at a time.</li>
-                </ul>
+                <div id="info" class="instructions show">
+                  <ul>
+                    <li>Click and drag to pan. Mouse wheel to zoom.</li>
+                    <li>Click spots to select.</li>
+                    <li>Only one spot can be selected at a time.</li>
+                  </ul>
               </div>
             </div>
 
@@ -410,11 +435,11 @@
       <script src="js/users.js"></script>
       <script src="js/loginPage.js" defer></script>
       <script src="js/confirmPage.js" defer></script>
+      <script src="js/confirmationPage.js"></script>
+      <script src="js/paymentPage.js"></script>
 
       <!-- MAP + APP LOGIC -->
       <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
-    <script src="js/confirmationPage.js"></script>
-    <script src="js/paymentPage.js"></script>
       <script src="js/lot-maps.js"></script>
       <script src="parking.js"></script>
 

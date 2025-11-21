@@ -365,3 +365,46 @@ document.getElementById("map-legend-button").addEventListener("click", () => {
     box.classList.toggle("open");
     legend.classList.toggle("show");
 });
+
+
+// ======================================================
+// =============== INFO BUTTON ==========================
+// ======================================================
+// Filters popup
+document.querySelector(".info-button-filters").addEventListener("click", () => {
+  document.querySelector(".info-popup-filters").classList.toggle("show");
+});
+
+// Nearby popup
+document.querySelector(".info-button-nearby").addEventListener("click", () => {
+  document.querySelector(".info-popup-nearby").classList.toggle("show");
+});
+
+// =============================
+// Close info popups on outside click
+// =============================
+document.addEventListener("click", function (e) {
+    const filtersBtn = document.querySelector(".info-button-filters");
+    const filtersPopup = document.querySelector(".info-popup-filters");
+
+    const nearbyBtn = document.querySelector(".info-button-nearby");
+    const nearbyPopup = document.querySelector(".info-popup-nearby");
+
+    // If click is outside filters popup + button → close it
+    if (
+        filtersPopup &&
+        !filtersPopup.contains(e.target) &&
+        !filtersBtn.contains(e.target)
+    ) {
+        filtersPopup.classList.remove("show");
+    }
+
+    // If click is outside nearby popup + button → close it
+    if (
+        nearbyPopup &&
+        !nearbyPopup.contains(e.target) &&
+        !nearbyBtn.contains(e.target)
+    ) {
+        nearbyPopup.classList.remove("show");
+    }
+});

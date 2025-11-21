@@ -144,6 +144,7 @@ h2 {
 /* ========================================= */
 /*            SIDEBAR CARDS                  */
 /* ========================================= */
+
 .building-selector,
 .filters {
   width: 250px;
@@ -155,6 +156,10 @@ h2 {
   margin: 14px 0 0px 40px;
   box-shadow: 0 0 15px var(--shadow-light);
   height: fit-content;
+}
+
+.building-selector > div:first-child {
+    margin-bottom: 20px; /* consistent spacing */
 }
 
 /* Scrollable inside Filters */
@@ -375,4 +380,72 @@ h2 {
   width: 22px;
   height: 12px;
   border-radius: 3px;
+}
+
+/* ========================================= */
+/*                INFO BUTTONS               */
+/* ========================================= */
+
+/* Shared button styling */
+.info-button-filters,
+.info-button-nearby {
+  background: none;
+  border: solid #1b4571 2px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  color: #1b4571;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+
+.info-button-filters:hover,
+.info-button-nearby:hover {
+  background-color: #3287e1;
+  color: white;
+}
+
+/* Shared popup style for BOTH popups */
+.info-popup-filters,
+.info-popup-nearby {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateX(110%);
+  margin-top: 3px;
+
+  display: none;
+
+  background-color: #ffffff;
+  color: #333333;
+  white-space: nowrap;
+  z-index: 5000;
+
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+
+  list-style: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.info-popup-filters.show,
+.info-popup-nearby.show {
+  display: block;
+}
+
+/* Remove bullet points from UL inside popups */
+.info-popup-filters ul,
+.info-popup-nearby ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info-popup-filters li,
+.info-popup-nearby li {
+  margin: 4px 0;
+  font-weight: normal;
 }

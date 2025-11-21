@@ -88,6 +88,7 @@ function buildAreas() {
     drawLots(staffLots, '#ff3388');
     drawLots(studentLot, '#ffaa33');
     
+    applyFilters();
 }
 
 function drawLots(lotGroup, color) {
