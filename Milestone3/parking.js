@@ -37,6 +37,7 @@ function onLotClick(campusLot, lotKey) {
 }
 
 
+
 function onHover(campusLot) {
     // If filters disabled this lot: ignore hover
     if (campusLot._hoverDisabled) return;
@@ -64,7 +65,13 @@ function renderLeaflet() {
   //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
   // }).addTo(map);
+  map.setMinZoom(15);
+  const southWest = L.latLng(49.83778, -97.09311);
+  const northEast = L.latLng(49.78773, -97.17341);
+  const bounds = L.latLngBounds(southWest, northEast);
 
+  map.setMaxBounds(bounds);
+  map.options.maxBoundsViscosity = 1.0;
   // Cleaner map design, imo.
   L.tileLayer("https://tile.openstreetmap.de/{z}/{x}/{y}.png", {
     maxZoom: 18,
@@ -765,17 +772,37 @@ const staffLots = {
         isElectric: false,
         isAccessible: true
     },
-
-    "ALC Lot": {
-        map_display_name: "ALC",
-        area: [
-            [49.8074377, -97.1374434],
-            [49.8070984, -97.1371859],
-            [49.8071988, -97.1368747],
-            [49.8068595, -97.1366065],
-            [49.8069253, -97.1364027],
-            [49.80759, -97.1369177],
-            [49.8074377, -97.1374434]
+    "ALC 1 Lot": {
+        "map_display_name": "ALC 1",
+        "area": [
+            [
+                49.8074377,
+                -97.1374434
+            ],
+            [
+                49.8070984,
+                -97.1371859
+            ],
+            [
+                49.8071988,
+                -97.1368747
+            ],
+            [
+                49.8068595,
+                -97.1366065
+            ],
+            [
+                49.8069253,
+                -97.1364027
+            ],
+            [
+                49.80759,
+                -97.1369177
+            ],
+            [
+                49.8074377,
+                -97.1374434
+            ]
         ],
         isAvailable: true,
         isStaff: true,
