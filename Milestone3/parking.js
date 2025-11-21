@@ -372,7 +372,7 @@ const publicLots = {
         isFaculty: false,
         isStaff: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -468,7 +468,7 @@ const publicLots = {
         isStaff: false,
         isCovered: false,
         isElectric: true,
-        isAccessible: true
+        isAccessible: false
     },
 
     "L Lot": {
@@ -505,8 +505,8 @@ const publicLots = {
         isFaculty: false,
         isStaff: false,
         isCovered: true,
-        isElectric: false,
-        isAccessible: true
+        isElectric: true,
+        isAccessible: false
     },
 
     "B.Public Lot": {
@@ -583,8 +583,8 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
-        isAccessible: true
+        isElectric: true,
+        isAccessible: false
     },
 
     "A Lot": {
@@ -701,7 +701,7 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
+        isElectric: true,
         isAccessible: true
     },
 
@@ -779,8 +779,8 @@ const staffLots = {
         isStudent: false,
         isVisitor: false,
         isCovered: false,
-        isElectric: false,
-        isAccessible: true
+        isElectric: true,
+        isAccessible: false
     },
     "ALC 1 Lot": {
         "map_display_name": "ALC 1",
@@ -996,7 +996,7 @@ const studentLot = {
         isVisitor: false,
         isCovered: false,
         isElectric: false,
-        isAccessible: true
+        isAccessible: false
     },
 
     "Q Lot 1": {

@@ -18,14 +18,18 @@
 header {
   background-color: var(--primary);
   color: white;
-  padding: 8px 12px;
+  padding: 8px 2px;
   border-radius: 10px;
-  font-size: 0.5em;
   box-shadow: 0 2px 5px var(--shadow-light);
-  width: auto;
-  display: inline-block;
-  text-align: left;
-  margin: 5px;
+
+  /* NEW — full-width + flex layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 250px;
+  height: 56px;
+  box-sizing: border-box;
 }
 
 .top-row {
@@ -33,7 +37,30 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 40px;
-  gap: 130px;
+  padding-right: 60px;
+  gap: 20px;
+}
+
+header h1 {
+  padding-left: 10px;
+}
+
+/* ========================================= */
+/*                LOGOUT BUTTON              */
+/* ========================================= */
+.logout-btn {
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 12px;
+}
+
+.logout-btn:hover {
+  background-color: #163a5e;
 }
 
 /* ========================================= */
@@ -448,22 +475,4 @@ h2 {
 .info-popup-nearby li {
   margin: 4px 0;
   font-weight: normal;
-}
-
-/* ========================================= */
-/*                LOGOUT BUTTON              */
-/* ========================================= */
-.logout-btn {
-  background-color: white;
-  color: rgb(0, 0, 0);
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  margin: 3px;
-}
-
-.logout-btn:hover {
-  background-color: #163a5e;
 }

@@ -31,16 +31,20 @@ document.getElementById("login-submit").addEventListener("click", () => {
 
 document.getElementById("guest-login").addEventListener("click", () => {
 
+    // Set user as visitor (public parking only)
+    window.currentUser = {
+        permit: "visitor"
+    };
+
     // Hide login, show app
     document.getElementById("login-page").style.display = "none";
     document.getElementById("app-container").style.display = "block";
 
-    // IMPORTANT FIX — force Leaflet to re-render
+    // Refresh map
     setTimeout(() => {
         map.invalidateSize(true);
-        // Removes the zoom to the first parking lot on the drop down
-        // applyFilters()
-    }, 150);   // 150ms = safe delay for layout to settle
+        applyFilters();
+    }, 150);
 });
 
 document.getElementById("logout-btn").addEventListener("click", () => {
