@@ -15,7 +15,7 @@ Our project implements multiple permit types that determine which parking lots a
 - **Access:** Staff Lots / Visitor Lots
 
 ### **Guest / Visitor**
-- Press option to "continue as guest"
+- Option to continue as guest  
 - **Access:** Visitor Lots only
 
 ---

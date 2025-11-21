@@ -510,7 +510,7 @@ const publicLots = {
     },
 
     "B.Public Lot": {
-        map_display_name: "B (Public)",
+        map_display_name: "B",
         area: [
             [49.8111745, -97.1292292],
             [49.810593, -97.1287464],
