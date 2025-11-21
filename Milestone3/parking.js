@@ -21,19 +21,29 @@ function onLotClick(campusLot, lotKey) {
         dropdown.selectedIndex = index;
     }
 
-    // Fly to the lot and open the panel
-    map.once('moveend', function () {
-        const original = window.nameLot[lotKey].originalName;
-        displayLotByName(original);
-    });
 
-    const center = campusLot.getBounds().getCenter();
 
-        //fixes map shake when already on same lot clicked
-    if(map.getCenter().lat.toFixed(4) != center.lat.toFixed(4) 
-        && map.getCenter().lng.toFixed(4) != center.lng.toFixed(4)){
-            map.flyTo(center, 18, {duration: 0.75 });
+    const targetCenter = campusLot.getBounds().getCenter();
+    const targetZoom = 18;
+
+    const currentCenter = map.getCenter();
+    const currentZoom = map.getZoom();
+
+    // Only fly to lot if not already at lot.
+    if (
+        Math.abs(currentCenter.lat - targetCenter.lat) < 0.0001 &&
+        Math.abs(currentCenter.lng - targetCenter.lng) < 0.0001 &&
+        currentZoom === targetZoom
+    ) {
+        displayLotByName(window.nameLot[lotKey].originalName);
+        return;
     }
+
+    map.flyTo(targetCenter, targetZoom, { duration: 0.75 });
+
+    map.once("moveend", function () {
+        displayLotByName(window.nameLot[lotKey].originalName);
+    });
 }
 
 
