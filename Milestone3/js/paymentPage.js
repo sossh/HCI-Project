@@ -90,18 +90,18 @@ function addHoursToTime(timeString, hoursToAdd) {
 }
 
 // Confirmation Page
-window.loadConfirmationPage = function (data) {
+loadConfirmationPage = function (paymentState) {
   const overlay = document.getElementById("confirm-page");
 
-  document.getElementById("confirmLot").textContent = data.lotName;
-  document.getElementById("confirmSpot").textContent = data.spotId;
-  document.getElementById("confirmDate").textContent = data.date;
+  document.getElementById("confirmLot").textContent = paymentState.lotName;
+  document.getElementById("confirmSpot").textContent = paymentState.spotId;
+  document.getElementById("confirmDate").textContent = paymentState.date;
   document.getElementById("confirmTime").textContent = formatTimeRange(
-    data.startTime,
-    data.endTime
+    paymentState.startTime,
+    paymentState.endTime
   );
   document.getElementById("confirmPrice").textContent = formatCurrency(
-    data.price
+    paymentState.price
   );
 
   overlay.classList.add("show");
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     paymentForm.addEventListener("submit", (e) => {
       e.preventDefault();
       document.getElementById("payment-page").classList.remove("show");
-      window.loadConfirmationPage(paymentState);
+      loadConfirmationPage(paymentState);
     });
   }
 
